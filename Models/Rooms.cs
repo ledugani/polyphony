@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Polyphony.Models
 {
-    public class RoomStorage
+    public class Rooms
     {
         public int Id { get; set; }
         public string RoomName { get; set; }
