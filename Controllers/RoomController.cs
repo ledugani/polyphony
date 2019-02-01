@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Polyphony.DataAccess;
 
 namespace Polyphony.Controllers
 {
@@ -11,5 +13,19 @@ namespace Polyphony.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
+        private IConfiguration _config;
+
+        public RoomController(IConfiguration config)
+        {
+            _config = config;
+        }
+        
+        // private readonly RoomAccess _storage;
+
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get() {
+            var rooms = new RoomAccess(_config);
+            return Ok(rooms.GetRooms());
+        }
     }
 }
