@@ -7,8 +7,7 @@ namespace Polyphony.Models
 {
     public class Rooms
     {
-        public int Id { get; set; }
-        public string RoomName { get; set; }
+        public int roomid { get; set; }
         public int ArtistId { get; set; }
         public DateTime CurrentTime { get; set; }
         public DateTime StartTime { get; set; }
