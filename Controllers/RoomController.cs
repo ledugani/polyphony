@@ -19,11 +19,11 @@ namespace Polyphony.Controllers
         {
             _config = config;
         }
-
+        
         // private readonly RoomAccess _storage;
 
         [HttpGet]
-        public ActionResult Get() {
+        public ActionResult<IEnumerable<string>> Get() {
             var rooms = new RoomAccess(_config);
             return Ok(rooms.GetRooms());
         }
