@@ -18,7 +18,7 @@ export class Registration extends Component {
         authRequests
             .registerUser(user)
             .then((fbUser) => {
-                this.props.history.push('/counter');
+                this.props.history.push('/');
                 console.log('user: ', fbUser);
             })
             .catch((error) => {
