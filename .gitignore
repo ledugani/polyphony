@@ -256,4 +256,5 @@ yarn-debug.log*
 yarn-error.log*
 
 src/constants.js
-appsettings.json 
+appsettings.json
+polyphony/appsettings.json
