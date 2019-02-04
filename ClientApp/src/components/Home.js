@@ -20,9 +20,21 @@ export class Home extends Component {
     render() {
         const allRooms = this.state.rooms.map((room) => {
             return (
-                <li key={room.id}>
-                    {room.roomid}
-                </li>
+                <div key={room.id} class="panel panel-default">
+                    <div class="panel-body">
+                        {room.artistId}
+                        &nbsp;
+                        |
+                        &nbsp;
+                        {room.roomName}
+                        &nbsp;
+                        |
+                        &nbsp;
+                        {room.startTime}
+                        <br />
+                        {room.roomDescription}
+                    </div>
+                </div>
             );
         })
     return (
