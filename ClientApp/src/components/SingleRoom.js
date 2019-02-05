@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import roomsRequest from '../DBRequests/roomsRequest';
 
 export class SingleRoom extends Component {
   state = {
@@ -8,13 +9,13 @@ export class SingleRoom extends Component {
   }
 
   componentDidMount() {
-    const productId = this.props.match.params.id;
-    productRequest.getProductById(productId)
+    const roomId = this.props.match.params.id;
+    roomsRequest.getRoomById(roomId)
         .then((res) => {
-            this.setState({ products: [res] });
+          this.setState({ room: [res] });
         })
         .catch((err) => {
-            console.error(err);
+          console.error(err);
         });
   }
 
