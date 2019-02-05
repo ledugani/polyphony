@@ -7,6 +7,7 @@ export class Registration extends Component {
         user: {
             firstName: 'Tom',
             lastName: 'Dugan',
+            username: 'ledugani',
             email: 'tdugan85@gmail.com',
             password: 'password'
         },
@@ -19,11 +20,25 @@ export class Registration extends Component {
             .registerUser(user)
             .then((fbUser) => {
                 this.props.history.push('/');
-                console.log('user: ', fbUser);
+                const newUser = {
+                    FirstName: user.firstname,
+                    LastName: user.lastname,
+                    Username: user.username,
+                    EmailAddress: user.email,
+                    IsActive: 1,
+                    FirebaseId: fbUser.user.uid
+                  }
+                  authRequests.addUser(newUser);
             })
             .catch((error) => {
                 console.error('There was an error with registration ->', error);
             })
+    }
+
+    usernameChange = (e) => {
+        const tempUser = { ...this.state.user };
+        tempUser.username = e.target.value;
+        this.setState({ user: tempUser });
     }
 
     firstNameChange = (e) => {
@@ -99,6 +114,21 @@ export class Registration extends Component {
                                     placeholder="Email"
                                     value={user.email}
                                     onChange={this.emailChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="username" className="col-sm-4 control-label">
+                                Username:
+                            </label>
+                            <div className="col-sm-8">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="username"
+                                    placeholder="limpBizkit"
+                                    value={user.username}
+                                    onChange={this.usernameChange}
                                 />
                             </div>
                         </div>

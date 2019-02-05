@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Polyphony.DataAccess;
+using Polyphony.Models;
 
 namespace Polyphony.Controllers
 {
@@ -26,6 +27,11 @@ namespace Polyphony.Controllers
         public ActionResult<IEnumerable<string>> Get() {
             var rooms = new RoomAccess(_config);
             return Ok(rooms.GetRooms());
+        }
+        [HttpPost("NewUser")]
+        public IActionResult AddNewUser(PUsers pUser)
+        {
+            return Ok();
         }
     }
 }
