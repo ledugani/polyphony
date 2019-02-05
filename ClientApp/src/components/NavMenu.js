@@ -11,7 +11,7 @@ export class NavMenu extends Component {
   render() {
     const logoutClickEvent = () => {
       authRequests.logoutUser();
-      this.props.logout();
+      this.props.logout;
     };
 
     return (
@@ -34,22 +34,23 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='cd' /> Rooms
               </NavItem>
             </LinkContainer>
-            {
-              this.props.authed ? (
-                <LinkContainer to={'/login'}>
-                  <Glyphicon glyph='road' />
-                  <button class='btn btn-default' onClick={logoutClickEvent}>
-                    Logout
-                  </button>
-                </LinkContainer>
-              ) : (
-                <LinkContainer to={'/registration'}>
-                  <NavItem>
-                    <Glyphicon glyph='edit' /> Registration
-                  </NavItem>
-                </LinkContainer>
-              )
-            }
+            { this.props.authed ? (
+            <LinkContainer to={'/registration'}>
+              <NavItem>
+              <button
+                onClick={logoutClickEvent}
+                className='btn btn-default'
+                >
+                <Glyphicon glyph='road' /> Logout
+              </button>
+              </NavItem>
+            </LinkContainer>) : (
+            <LinkContainer to={'/login'}>
+              <NavItem>
+                <Glyphicon glyph='th-list' /> Login
+              </NavItem>
+            </LinkContainer>
+            ) }
           </Nav>
         </Navbar.Collapse>
       </Navbar>

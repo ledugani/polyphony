@@ -25,7 +25,7 @@ export class Rooms extends Component {
         const allRooms = this.state.rooms.map((room) => {
             return (
                 <div key={room.id} class="panel panel-default">
-                    <div class="panel-body">
+                    <div className="panel-body">
                         {room.artistId}
                         &nbsp;
                         |
@@ -36,7 +36,7 @@ export class Rooms extends Component {
                         &nbsp;
                         {room.startTime}
                         <button
-                          class="btn btn-default"
+                          className="btn btn-default"
                           onClick={() => {this.pushToRoom(room.roomId)}}
 
                           >
