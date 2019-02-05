@@ -28,5 +28,18 @@ namespace Polyphony.DataAccess
                 return result.ToList();
             }
         }
+
+        public Rooms GetById(int id)
+        {
+            using (var connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+
+                var result = connection.QueryFirst<Rooms>(@"SELECT *
+                                                                FROM Room
+                                                                WHERE Room.roomId = @id", new { id });
+                return result;
+            }
+        }
     }
 }

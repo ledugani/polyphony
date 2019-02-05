@@ -2,19 +2,26 @@ import React, {Component} from 'react';
 
 export class SingleRoom extends Component {
   state = {
-    room: this.props.room,
+    room: [],
     users: [],
     messages: [],
   }
 
-  componentWillReceiveProps() {
-    this.setState({ room: this.props.room })
+  componentDidMount() {
+    const productId = this.props.match.params.id;
+    productRequest.getProductById(productId)
+        .then((res) => {
+            this.setState({ products: [res] });
+        })
+        .catch((err) => {
+            console.error(err);
+        });
   }
 
   render() {
     return (
       <div>
-        <h1></h1>
+        <h1>Single Room</h1>
       </div>
     );
   }
