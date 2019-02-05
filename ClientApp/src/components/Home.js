@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import roomsRequest from '../DBRequests/roomsRequest';
 
 export class Home extends Component {
     state = {

@@ -2,12 +2,18 @@
 import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import authRequests from '../FirebaseRequests/auth';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
   displayName = NavMenu.name
 
   render() {
+    const logoutClickEvent = () => {
+      authRequests.logoutUser();
+      this.props.logout();
+    };
+
     return (
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
@@ -28,16 +34,22 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='cd' /> Rooms
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
-              <NavItem>
-                <Glyphicon glyph='user' /> User
-              </NavItem>
-            </LinkContainer>
-            <LinkContainer to={'/registration'}>
-                <NavItem>
+            {
+              this.props.authed ? (
+                <LinkContainer to={'/login'}>
+                  <Glyphicon glyph='road' />
+                  <button class='btn btn-default' onClick={logoutClickEvent}>
+                    Logout
+                  </button>
+                </LinkContainer>
+              ) : (
+                <LinkContainer to={'/registration'}>
+                  <NavItem>
                     <Glyphicon glyph='edit' /> Registration
-              </NavItem>
-            </LinkContainer>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>

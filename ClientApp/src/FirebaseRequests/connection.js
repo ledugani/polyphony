@@ -1,8 +1,8 @@
 ﻿import firebase from 'firebase';
 import constants from '../constants';
 
-const firebaseApp = () => {
+const fbConnection = () => {
     firebase.initializeApp(constants.firebaseConfig);
 }
 
-export default firebaseApp
+export default fbConnection;
