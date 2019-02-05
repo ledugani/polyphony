@@ -12,7 +12,7 @@ namespace Polyphony.Models
         public DateTime CurrentTime { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public string roomName { get; set; }
-        public string roomDescription { get; set; }
+        public string RoomName { get; set; }
+        public string RoomDescription { get; set; }
     }
 }
