@@ -24,7 +24,7 @@ export class Rooms extends Component {
     render() {
         const allRooms = this.state.rooms.map((room) => {
             return (
-                <div key={room.id} className="panel panel-default">
+                <div key={room.roomId} className="panel panel-default">
                     <div className="panel-body">
                         {room.artistId}
                         &nbsp;

@@ -9,6 +9,7 @@ export class Home extends Component {
         return (
             <div>
                 <h1>Project Polyphony</h1>
+                <p>Welcome to Polyphony, your online hub for new music listening.</p>
             </div>
         );
     }
