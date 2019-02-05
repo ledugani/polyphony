@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace bangazon2.Controllers
+namespace Polyphony.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly UserAccess _userAccess;
 
-        public CustomerController(IConfiguration config)
+        public UserController(IConfiguration config)
         {
             _userAccess = new UserAccess(config);
         }

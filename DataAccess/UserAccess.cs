@@ -25,7 +25,7 @@ namespace Polyphony.DataAccess
                 dbConnection.Open();
 
                 var result = dbConnection.Execute(@"INSERT INTO Users (first_name, last_name, email, username, isActive, firebaseId) 
-                                                    VALUES (@FirstName,@LastName,@Email,@Username,@IsActive,@FirebaseId);", pUser);
+                                                    VALUES (@FirstName,@LastName,@EmailAddress,@Username,@IsActive,@FirebaseId);", pUser);
 
                 return result == 1;
             }

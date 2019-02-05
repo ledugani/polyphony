@@ -24,7 +24,7 @@ export class Registration extends Component {
                     FirstName: user.firstname,
                     LastName: user.lastname,
                     Username: user.username,
-                    Email: user.email,
+                    EmailAddress: user.email,
                     IsActive: 1,
                     FirebaseId: fbUser.user.uid
                   }
