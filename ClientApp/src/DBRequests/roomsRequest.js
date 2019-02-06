@@ -13,4 +13,17 @@ const getRequest = () => {
     })
 };
 
-export default { getRequest }
+const getRoomById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .get(`/api/room/${id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+};
+
+export default { getRequest, getRoomById }

@@ -14,24 +14,29 @@ namespace Polyphony.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private IConfiguration _config;
+        private readonly RoomAccess _roomAccess;
 
         public RoomController(IConfiguration config)
         {
-            _config = config;
+            _roomAccess = new RoomAccess(config);
         }
-        
-        // private readonly RoomAccess _storage;
 
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get() {
-            var rooms = new RoomAccess(_config);
-            return Ok(rooms.GetRooms());
+            return Ok(_roomAccess.GetRooms());
         }
-        [HttpPost("NewUser")]
-        public IActionResult AddNewUser(PUsers pUser)
+
+        //[HttpPost("NewUser")]
+        //public IActionResult AddNewUser(PUsers pUser)
+        //{
+        //    return Ok();
+        //}
+
+        [HttpGet("{id}")]
+        public IActionResult GetProductById(int id)
         {
-            return Ok();
+            var result = _roomAccess.GetById(id);
+            return Ok(result);
         }
     }
 }

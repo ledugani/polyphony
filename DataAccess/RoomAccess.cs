@@ -17,7 +17,7 @@ namespace Polyphony.DataAccess
             connectionstring = config.GetSection("ConnectionString").Value;
         }
 
-        public List<Rooms> GetRooms()
+        public IEnumerable<Rooms> GetRooms()
         {
             using (var db = new SqlConnection(connectionstring))
             {
@@ -26,6 +26,19 @@ namespace Polyphony.DataAccess
                 var result = db.Query<Rooms>(@"SELECT * FROM room");
 
                 return result.ToList();
+            }
+        }
+
+        public Rooms GetById(int id)
+        {
+            using (var connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+
+                var result = connection.QueryFirst<Rooms>(@"SELECT *
+                                                                FROM Room
+                                                                WHERE Room.roomId = @id", new { id });
+                return result;
             }
         }
     }
