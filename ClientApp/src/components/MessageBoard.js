@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './App.css';
 
 import Message from './Message.js';
 
@@ -15,26 +14,13 @@ class MessageBoard extends React.Component {
         this.submitMessage = this.submitMessage.bind(this);
     }
 
-    componentDidMount() {
-      this.scrollToBot();
-    }
-
-    componentDidUpdate() {
-      this.scrollToBot();
-    }
-
-    scrollToBot() {
-      ReactDOM.findDOMNode(this.refs.chats).scrollTop = ReactDOM.findDOMNode(this.refs.chats).scrollHeight;
-    }
-
     submitMessage(e) {
       e.preventDefault();
 
       this.setState({
-        chats: this.state.chats.concat([{
-            username: "Kevin Hsu",
+        messages: this.state.messages.concat([{
+            username: "ledugani",
             content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
-            img: "http://i.imgur.com/Tj5DGiO.jpg",
         }])
       }, () => {
         ReactDOM.findDOMNode(this.refs.msg).value = "";
@@ -42,17 +28,15 @@ class MessageBoard extends React.Component {
     }
 
     render() {
-      const username = "Kevin Hsu";
-      const { chats } = this.state;
+      const { messages } = this.state;
 
       return (
           <div className="chatroom">
-              <h3>Chilltime</h3>
-              <ul className="chats" ref="chats">
+              <ul className="messages" ref="messages">
                   {
-                      chats.map((chat) =>
-                          <Message chat={chat} user={username} />
-                      )
+                    messages.map((chat) =>
+                        <Message chat={chat} user={messages.username} />
+                    )
                   }
               </ul>
               <form className="input" onSubmit={(e) => this.submitMessage(e)}>
