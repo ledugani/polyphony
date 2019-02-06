@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
+import MessageBoard from './MessageBoard';
 
 export class SingleRoom extends Component {
   state = {
