@@ -9,6 +9,7 @@ import { Login } from './components/Login';
 import firebase from 'firebase';
 
 import fbConnection from './FirebaseRequests/connection';
+import { SingleRoom } from './components/SingleRoom';
 
 fbConnection();
 
@@ -80,6 +81,7 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
             <PrivateRoute path='/rooms' authed={this.state.authed} component={Rooms} />
             <PrivateRoute path='/cart' authed={this.state.authed} component={FetchData} />
+            <PrivateRoute path='/singleRoom/:id' authed={this.state.authed} component={SingleRoom}/>
             <PublicRoute path='/registration' authed={this.state.authed} component={Registration} />
             <PublicRoute path='/login' authed={this.state.authed} component={Login} />
           </Switch>

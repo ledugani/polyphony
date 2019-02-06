@@ -6,38 +6,37 @@ END;
 GO
 
 CREATE TABLE [users] (
-    [id] INTEGER NOT NULL IDENTITY(1, 1),
-    [username] VARCHAR(50) NULL,
-    [email] VARCHAR(50) NULL,
-    PRIMARY KEY ([id])
+    [first_name] VARCHAR(255) NULL,
+    [last_name] VARCHAR(255) NULL,
+    [email] VARCHAR(255) NULL,
+    [username] VARCHAR(255) NOT NULL,
+    [isActive] INTEGER NULL,
+    [firebaseId] VARCHAR(50) NULL,
+    PRIMARY KEY ([username])
 );
 GO
 
-INSERT INTO users (email, username) VALUES ('dcapp0@umn.edu', 'mjenoure0'),('atankard1@clickbank.net', 'smoat1'),('hlapenna2@artisteer.com', 'agiovanni2'),('dvalenta3@slate.com', 'gweight3');
-INSERT INTO users (email, username) VALUES ('ctarry4@google.ca', 'aallbon4'),('ocamel5@yahoo.co.jp', 'aledwich5'),('jmcclaurie6@cbc.ca', 'buren6'),('pirdale7@cyberchimps.com', 'gmilburn7');
-INSERT INTO users (email, username) VALUES ('tbrewin8@cisco.com', 'kclendennen8'),('eaire9@barnesandnoble.com', 'sumbert9'),('kdillwaya@alibaba.com', 'pfarisha'),('dsaintsburyb@who.int', 'bbartleyb');
-INSERT INTO users (email, username) VALUES ('vduckelsc@sciencedaily.com', 'hcollinwoodc'),('mcassleyd@topsy.com', 'mrodnightd'),('sharnette@timesonline.co.uk', 'amotherwelle'),('wguillermanf@lulu.com', 'tplentyf');
-INSERT INTO users (email, username) VALUES ('hbuzineg@merriam-webster.com', 'jwombwellg'),('mjocelynh@rakuten.co.jp', 'gpearlh'),('jsowersbyi@hibu.com', 'rbreartyi'),('elitherlandj@prnewswire.com', 'fsandsj');
-INSERT INTO users (email, username) VALUES ('egowenk@apache.org', 'mbennellickk'),('dwandrackl@clickbank.net', 'rgabbitusl'),('jroslem@pbs.org', 'skingsfordm'),('bwollrauchn@hexun.com', 'sbaldersonn');
-INSERT INTO users (email, username) VALUES ('bstubbeleyo@bloglines.com', 'ucolisbeo'),('ksimkinp@taobao.com', 'rgaishsonp'),('ykerswellq@epa.gov', 'efarressq'),('agagier@blogspot.com', 'gsherr');
-INSERT INTO users (email, username) VALUES ('vjakovijevics@mediafire.com', 'scoppledikes'),('clefriect@fc2.com', 'gscraggt'),('cpawsonu@cbsnews.com', 'lsyalvesteru'),('lheightonv@goo.gl', 'ninglishv');
-INSERT INTO users (email, username) VALUES ('lderuelw@bloglines.com', 'vdreakinw'),('vcutcheyx@weather.com', 'smacelholmx'),('hspinozziy@cpanel.net', 'jgoldiny'),('pkristufekz@theguardian.com', 'osoonhousez');
-INSERT INTO users (email, username) VALUES ('sdilleston10@soup.io', 'fjanus10'),('adumingo11@angelfire.com', 'ngaisford11'),('hpiche12@csmonitor.com', 'cbellham12'),('ahelleker13@sina.com.cn', 'vbradshaw13');
-INSERT INTO users (email, username) VALUES ('lavory14@naver.com', 'vsaunt14'),('cgentile15@51.la', 'bfalkinder15'),('ascarrott16@symantec.com', 'dhearsey16'),('jkilmurray17@microsoft.com', 'kfontes17');
-INSERT INTO users (email, username) VALUES ('zhillum18@eepurl.com', 'lpattillo18'),('nrubega19@homestead.com', 'gbonfield19'),('hkeizman1a@typepad.com', 'kdantesia1a'),('mkeighly1b@miitbeian.gov.cn', 'enears1b');
-INSERT INTO users (email, username) VALUES ('fokie1c@comsenz.com', 'sspinley1c'),('bgladdin1d@facebook.com', 'ivallack1d'),('gmcdill1e@prlog.org', 'nmaltby1e'),('oreuter1f@drupal.org', 'cbelward1f');
-INSERT INTO users (email, username) VALUES ('znelson1g@meetup.com', 'dbrittian1g'),('nwigley1h@cargocollective.com', 'whewins1h'),('cwinterton1i@cisco.com', 'tkorfmann1i'),('aprentice1j@walmart.com', 'ewilmott1j');
-INSERT INTO users (email, username) VALUES ('tgisbey1k@salon.com', 'wyouster1k'),('nfarnell1l@japanpost.jp', 'mmoreton1l'),('rwidd1m@si.edu', 'cbutlerbowdon1m'),('eiacovaccio1n@aboutads.info', 'bembra1n');
-INSERT INTO users (email, username) VALUES ('srussi1o@hostgator.com', 'tswepstone1o'),('alawford1p@house.gov', 'pmilksop1p'),('agoddard1q@google.it', 'rgrunnill1q'),('wwittrington1r@arizona.edu', 'mebbetts1r');
-INSERT INTO users (email, username) VALUES ('sbeedle1s@php.net', 'kbyllam1s'),('jdownes1t@opera.com', 'mricciardello1t'),('jakred1u@cargocollective.com', 'npolini1u'),('jcardwell1v@netscape.com', 'nbennetto1v');
-INSERT INTO users (email, username) VALUES ('dbrennon1w@dagondesign.com', 'bmoohan1w'),('fnestor1x@github.com', 'echaloner1x'),('pberceros1y@state.tx.us', 'tfrancais1y'),('dspinozzi1z@themeforest.net', 'pwestnage1z');
-INSERT INTO users (email, username) VALUES ('bcanniffe20@cnn.com', 'rdelahaye20'),('edacres21@icq.com', 'cucchino21'),('hgofton22@hostgator.com', 'lramel22'),('nreynard23@dmoz.org', 'fhagwood23');
-INSERT INTO users (email, username) VALUES ('nwhittington24@craigslist.org', 'rdingate24'),('oreaveley25@whitehouse.gov', 'esaull25'),('aferrers26@cbsnews.com', 'bcoste26'),('rsurridge27@tiny.cc', 'phawlgarth27');
-INSERT INTO users (email, username) VALUES ('awall28@wufoo.com', 'ikivelhan28'),('cgather29@netvibes.com', 'cdungay29'),('hlowrance2a@howstuffworks.com', 'lhuband2a'),('lkoppens2b@diigo.com', 'jmcilrath2b');
-INSERT INTO users (email, username) VALUES ('rrivenzon2c@webnode.com', 'lmegarry2c'),('rsarll2d@studiopress.com', 'ahewes2d'),('hjansson2e@arstechnica.com', 'msantino2e'),('rmerritt2f@rambler.ru', 'ralsford2f');
-INSERT INTO users (email, username) VALUES ('strusler2g@sourceforge.net', 'pvanyashin2g'),('srekes2h@free.fr', 'chussell2h'),('fthacker2i@squidoo.com', 'smackenzie2i'),('tadrien2j@goodreads.com', 'csouthcomb2j');
-INSERT INTO users (email, username) VALUES ('edonnellan2k@nih.gov', 'titzcak2k'),('dheineke2l@timesonline.co.uk', 'ndebanke2l'),('dedensor2m@last.fm', 'gcrates2m'),('ylambin2n@drupal.org', 'srasher2n');
-INSERT INTO users (email, username) VALUES ('hscowcraft2o@hp.com', 'wbartoshevich2o'),('mvorley2p@opensource.org', 'evidean2p'),('dbouzan2q@technorati.com', 'kburnand2q'),('flennon2r@independent.co.uk', 'bgrange2r');
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Joshuah', 'Collier', 'jcollier0@wiley.com', 'jcollier0', 0, 17);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Dav', 'Comelli', 'dcomelli1@yelp.com', 'dcomelli1', 0, 55);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Jerrylee', 'Kenrick', 'jkenrick2@creativecommons.org', 'jkenrick2', 1, 50);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Brandais', 'Kunzelmann', 'bkunzelmann3@latimes.com', 'bkunzelmann3', 1, 33);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Chaddie', 'Rosencrantz', 'crosencrantz4@vistaprint.com', 'crosencrantz4', 1, 78);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Eunice', 'Sharrock', 'esharrock5@t-online.de', 'esharrock5', 0, 2);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Elbert', 'Winckles', 'ewinckles6@sina.com.cn', 'ewinckles6', 1, 2);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Gerti', 'Esp', 'gesp7@newyorker.com', 'gesp7', 0, 37);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Jocelyne', 'Rosenbaum', 'jrosenbaum8@dot.gov', 'jrosenbaum8', 1, 25);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Batsheva', 'Olenikov', 'bolenikov9@unc.edu', 'bolenikov9', 1, 20);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Fredrick', 'Allanby', 'fallanbya@macromedia.com', 'fallanbya', 1, 42);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Samuele', 'Gallafant', 'sgallafantb@hp.com', 'sgallafantb', 1, 91);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Fredric', 'Jephson', 'fjephsonc@microsoft.com', 'fjephsonc', 1, 23);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Dominica', 'Escreet', 'descreetd@twitter.com', 'descreetd', 0, 77);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Charlena', 'Biers', 'cbierse@mapy.cz', 'cbierse', 0, 30);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Rosy', 'Ricciardelli', 'rricciardellif@umich.edu', 'rricciardellif', 1, 67);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Nichole', 'Brockton', 'nbrocktong@businessinsider.com', 'nbrocktong', 1, 56);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Cassandra', 'Rooze', 'croozeh@usatoday.com', 'croozeh', 1, 47);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Amalle', 'Barwood', 'abarwoodi@uiuc.edu', 'abarwoodi', 1, 16);
+insert into users (first_name, last_name, email, username, isActive, firebaseId) values ('Scott', 'Waterstone', 'swaterstonej@timesonline.co.uk', 'swaterstonej', 1, 17);
+
 
 ------- Artist Table --------
 IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('artist'))
@@ -117,62 +116,64 @@ CREATE TABLE [room] (
     [roomid] INTEGER NOT NULL IDENTITY(1, 1),
     [currenttime] DATETIME,
     [artistid] VARCHAR(255) NULL,
-    [start_time] DATETIME,
-    [end_time] DATETIME,
+    [starttime] DATETIME,
+    [endtime] DATETIME,
+    [roomname] VARCHAR(50),
+    [roomdescription] VARCHAR(255),
     PRIMARY KEY ([roomid])
 );
 GO
 
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 32, '2018-01-29 00:23:52', '2018-06-05 00:49:44');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 20, '2018-11-19 12:18:06', '2018-05-27 16:35:39');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 42, '2018-09-28 04:56:44', '2018-03-19 00:26:23');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 20, '2018-08-21 16:52:08', '2018-12-26 00:53:15');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 34, '2019-01-02 15:55:02', '2018-10-11 14:58:13');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 37, '2018-07-01 08:48:32', '2018-12-19 03:12:04');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 30, '2018-02-16 06:15:38', '2018-11-04 14:18:48');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 11, '2018-07-27 05:16:09', '2018-11-11 16:38:47');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 5, '2018-11-12 04:46:56', '2018-12-17 11:18:24');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 6, '2018-12-20 00:35:14', '2018-10-28 21:59:40');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 12, '2018-08-14 23:56:39', '2019-01-22 08:42:46');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 18, '2018-05-03 22:14:03', '2018-02-12 07:20:57');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 1, '2018-08-28 02:47:57', '2018-03-10 00:09:45');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 34, '2018-10-13 17:25:31', '2018-06-28 14:13:27');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 29, '2018-08-07 09:31:43', '2018-03-31 21:54:37');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 13, '2018-11-29 15:31:23', '2018-06-07 05:49:55');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 41, '2018-06-28 08:44:40', '2018-02-22 08:35:21');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 20, '2018-03-11 17:55:22', '2018-08-14 21:29:39');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 36, '2018-04-06 08:49:41', '2018-04-02 20:46:19');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 21, '2018-08-23 06:35:25', '2018-08-14 06:06:09');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 26, '2018-09-13 23:35:05', '2018-12-23 19:58:04');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 22, '2018-11-30 02:03:04', '2018-12-11 06:01:45');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 22, '2018-12-31 22:12:02', '2018-02-03 18:12:41');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 42, '2018-07-21 09:30:09', '2018-09-26 01:31:24');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 13, '2018-08-26 02:38:30', '2018-11-22 22:35:57');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 23, '2018-07-01 07:20:36', '2018-12-31 04:12:12');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 22, '2018-04-11 09:40:39', '2019-01-07 17:05:38');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 6, '2018-07-11 07:39:56', '2018-03-12 23:28:50');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 26, '2018-01-31 22:02:22', '2018-06-06 12:22:31');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 43, '2018-05-20 12:52:33', '2018-07-24 03:46:42');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 45, '2018-11-16 10:15:03', '2018-06-11 12:32:10');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 27, '2018-02-16 10:24:06', '2018-07-24 10:53:49');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 9, '2018-07-07 16:27:27', '2018-11-21 00:31:44');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 8, '2018-11-18 14:51:02', '2018-07-19 10:15:05');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 9, '2018-08-31 16:02:16', '2018-09-07 08:15:48');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 34, '2018-11-08 19:54:39', '2018-07-02 10:00:51');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 9, '2018-02-01 20:10:09', '2019-01-24 20:44:54');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 13, '2018-07-02 23:11:01', '2018-07-31 04:55:26');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 48, '2018-12-30 08:45:00', '2018-05-02 12:32:41');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 42, '2018-05-10 13:08:28', '2018-05-09 20:05:42');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 18, '2019-01-08 15:25:50', '2018-06-09 00:49:27');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 34, '2018-06-24 20:28:34', '2018-10-15 02:49:35');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 47, '2018-08-04 05:42:03', '2018-05-01 02:18:55');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 32, '2018-02-25 07:21:58', '2018-06-06 03:59:42');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 29, '2018-08-05 00:02:13', '2018-11-27 13:04:41');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 43, '2018-04-14 05:05:48', '2019-01-22 05:34:16');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 8, '2019-01-06 09:21:33', '2018-11-17 01:48:07');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 2, '2018-05-26 02:19:00', '2018-09-15 05:54:02');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 10, '2018-06-15 04:25:13', '2018-04-15 13:16:07');
-INSERT INTO room (currenttime, artistid, start_time, end_time) VALUES (getdate(), 29, '2018-12-28 09:43:52', '2018-09-26 16:12:42');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 37, '2019-02-01 23:16:59', '2019-03-26 19:59:15', 'Terathopius ecaudatus', 'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 46, '2019-02-19 07:51:50', '2019-03-03 01:24:25', 'Chlidonias leucopterus', 'Morbi ut odio.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 38, '2019-02-20 22:23:10', '2019-03-17 13:07:16', 'Diomedea irrorata', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 37, '2019-02-12 07:23:32', '2019-03-07 00:47:37', 'Phalacrocorax brasilianus', 'Donec quis orci eget orci vehicula condimentum.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 28, '2019-02-12 11:24:35', '2019-03-02 10:44:43', 'Alligator mississippiensis', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 34, '2019-02-21 02:48:09', '2019-03-03 20:07:57', 'Bison bison', 'Maecenas pulvinar lobortis est.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 27, '2019-02-20 07:17:10', '2019-03-26 15:17:08', 'Raphicerus campestris', 'Morbi a ipsum. Integer a nibh.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 27, '2019-02-21 22:44:52', '2019-03-10 07:18:31', 'Spizaetus coronatus', 'Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 33, '2019-02-11 01:14:36', '2019-03-14 01:32:50', 'Theropithecus gelada', 'Sed ante.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 9, '2019-02-19 07:02:00', '2019-03-19 22:11:22', 'Felis silvestris lybica', 'Maecenas pulvinar lobortis est.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 4, '2019-02-05 18:17:42', '2019-03-27 02:17:20', 'Uraeginthus angolensis', 'Integer ac neque.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 4, '2019-02-25 09:37:08', '2019-03-12 00:37:48', 'Felis concolor', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 50, '2019-02-27 23:48:39', '2019-03-30 14:25:18', 'Toxostoma curvirostre', 'Nam tristique tortor eu pede.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 41, '2019-02-13 03:36:07', '2019-03-20 22:03:27', 'Butorides striatus', 'Donec posuere metus vitae ipsum. Aliquam non mauris.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 3, '2019-02-08 07:33:54', '2019-03-06 18:51:33', 'Neophoca cinerea', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 36, '2019-02-07 12:44:32', '2019-03-03 07:19:04', 'Cervus canadensis', 'Ut tellus.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 16, '2019-02-05 17:03:41', '2019-03-04 15:20:06', 'Geochelone elegans', 'Ut at dolor quis odio consequat varius.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 5, '2019-02-15 05:28:27', '2019-03-13 02:07:15', 'Certotrichas paena', 'Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 7, '2019-02-19 10:58:01', '2019-03-27 23:06:00', 'Vulpes chama', 'Phasellus id sapien in sapien iaculis congue.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 38, '2019-02-15 11:06:45', '2019-03-20 19:25:30', 'Macropus rufogriseus', 'Nunc rhoncus dui vel sem.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 45, '2019-02-27 18:46:15', '2019-03-07 07:09:44', 'Phascogale tapoatafa', 'Proin interdum mauris non ligula pellentesque ultrices.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 31, '2019-02-17 08:53:43', '2019-03-20 09:35:25', 'Acrobates pygmaeus', 'In sagittis dui vel nisl.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 24, '2019-02-16 19:55:52', '2019-03-30 08:33:17', 'Panthera pardus', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 1, '2019-02-06 22:17:45', '2019-03-29 03:16:51', 'Eumetopias jubatus', 'Suspendisse potenti.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 19, '2019-02-23 12:37:23', '2019-03-10 01:00:57', 'Lorythaixoides concolor', 'Duis at velit eu est congue elementum.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 33, '2019-02-13 23:31:29', '2019-03-10 21:03:14', 'Crotalus adamanteus', 'Maecenas ut massa quis augue luctus tincidunt.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 50, '2019-02-08 18:06:02', '2019-03-26 12:38:00', 'Gorilla gorilla', 'Ut tellus. Nulla ut erat id mauris vulputate elementum.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 4, '2019-02-15 13:53:24', '2019-03-14 11:38:21', 'Centrocercus urophasianus', 'Vivamus vestibulum sagittis sapien.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 5, '2019-02-26 15:31:05', '2019-03-30 09:04:39', 'Tachyglossus aculeatus', 'Phasellus id sapien in sapien iaculis congue.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 2, '2019-02-05 03:39:00', '2019-03-23 00:53:19', 'Cervus elaphus', 'Nullam sit amet turpis elementum ligula vehicula consequat.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 15, '2019-02-04 01:08:34', '2019-03-29 23:05:41', 'Pavo cristatus', 'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 47, '2019-02-25 09:58:50', '2019-03-21 18:33:50', 'Uraeginthus bengalus', 'Donec posuere metus vitae ipsum. Aliquam non mauris.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 50, '2019-02-11 09:35:04', '2019-03-25 14:55:08', 'Sciurus niger', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 20, '2019-02-21 17:42:32', '2019-03-14 04:42:20', 'Zalophus californicus', 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 44, '2019-02-25 20:20:58', '2019-03-08 15:28:10', 'Sagittarius serpentarius', 'Donec dapibus.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 3, '2019-02-15 01:14:14', '2019-03-06 04:25:30', 'Stenella coeruleoalba', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 21, '2019-02-02 01:06:44', '2019-03-09 22:15:19', 'Mellivora capensis', 'Aliquam non mauris. Morbi non lectus.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 27, '2019-02-24 06:53:27', '2019-03-01 08:09:36', 'Varanus salvator', 'Vivamus in felis eu sapien cursus vestibulum.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 39, '2019-02-19 18:37:57', '2019-03-28 19:50:02', 'Equus hemionus', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 12, '2019-02-06 04:44:20', '2019-03-27 12:58:40', 'Felis silvestris lybica', 'Nunc rhoncus dui vel sem. Sed sagittis.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 42, '2019-02-18 16:53:31', '2019-03-15 00:27:50', 'Streptopelia senegalensis', 'In quis justo. Maecenas rhoncus aliquam lacus.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 45, '2019-02-05 00:13:56', '2019-03-29 21:00:59', 'Naja haje', 'Suspendisse accumsan tortor quis turpis.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 37, '2019-02-08 13:36:11', '2019-03-04 14:23:52', 'Himantopus himantopus', 'Praesent id massa id nisl venenatis lacinia.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 7, '2019-02-15 12:12:40', '2019-03-13 17:56:58', 'Sitta canadensis', 'In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 40, '2019-02-09 05:30:46', '2019-03-24 05:18:22', 'Tursiops truncatus', 'Nam tristique tortor eu pede.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 19, '2019-02-20 04:59:45', '2019-03-15 20:53:06', 'Lepilemur rufescens', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 45, '2019-02-26 01:04:07', '2019-03-17 20:28:32', 'Spermophilus lateralis', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 7, '2019-02-10 15:17:31', '2019-03-01 16:23:59', 'Ninox superciliaris', 'Maecenas tincidunt lacus at velit.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 46, '2019-02-10 05:33:13', '2019-03-26 18:05:15', 'Butorides striatus', 'Aenean fermentum.');
+insert into room (currenttime, artistid, starttime, endtime, roomname, roomdescription) values (getdate(), 36, '2019-02-19 05:19:46', '2019-03-05 16:56:37', 'Loxodonta africana', 'In hac habitasse platea dictumst.');
 
 
 ------- RoomSession Table -------

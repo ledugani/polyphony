@@ -17,7 +17,7 @@ namespace Polyphony.DataAccess
             connectionstring = config.GetSection("ConnectionString").Value;
         }
 
-        public List<Rooms> GetRooms()
+        public IEnumerable<Rooms> GetRooms()
         {
             using (var db = new SqlConnection(connectionstring))
             {

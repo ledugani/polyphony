@@ -3,7 +3,15 @@ import roomsRequest from '../DBRequests/roomsRequest';
 
 export class SingleRoom extends Component {
   state = {
-    room: [],
+    room: {
+      artistId: '',
+      currentTime: '',
+      endTime: '',
+      roomDescription: '',
+      roomId: '',
+      roomName: '',
+      startTime: '',
+    },
     users: [],
     messages: [],
   }
@@ -12,7 +20,7 @@ export class SingleRoom extends Component {
     const roomId = this.props.match.params.id;
     roomsRequest.getRoomById(roomId)
         .then((res) => {
-          this.setState({ room: [res] });
+          this.setState({ room: res });
         })
         .catch((err) => {
           console.error(err);
@@ -20,9 +28,11 @@ export class SingleRoom extends Component {
   }
 
   render() {
+    const room = this.state.room;
     return (
       <div>
-        <h1>Single Room</h1>
+        <h1>{room.roomName}</h1>
+        <p>{room.roomDescription}</p>
       </div>
     );
   }

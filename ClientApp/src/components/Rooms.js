@@ -11,14 +11,14 @@ export class Rooms extends Component {
     }
 
     componentDidMount() {
-        roomsRequest
-            .getRequest()
-            .then((rooms) => {
-                this.setState({ rooms })
-            })
-            .catch(err => {
-                console.error('There was an error getting all the rooms -> ', err);
-            })
+      roomsRequest
+        .getRequest()
+        .then((rooms) => {
+            this.setState({ rooms })
+        })
+        .catch(err => {
+            console.error('There was an error getting all the rooms -> ', err);
+        })
     }
 
     render() {
