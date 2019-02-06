@@ -31,8 +31,22 @@ export class SingleRoom extends Component {
     const room = this.state.room;
     return (
       <div>
-        <h1>{room.roomName}</h1>
-        <p>{room.roomDescription}</p>
+        <div>
+          <h1>{room.roomName}</h1>
+          <p>{room.roomDescription}</p>
+        </div>
+        <div>
+          <div>
+            <h2>SoundCloud</h2>
+          </div>
+          <div>
+            <h2>Active Users</h2>
+          </div>
+        </div>
+        <div>
+          <h2>Message Board</h2>
+          <MessageBoard history={history} />
+        </div>
       </div>
     );
   }
