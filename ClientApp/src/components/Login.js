@@ -21,7 +21,7 @@ export class Login extends Component {
         console.log(res);
       })
       .catch(error => {
-        console.error('there was an error in login', error);
+        console.error('There was an error in logging in -> ', error);
       });
   };
 
