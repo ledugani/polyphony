@@ -3,7 +3,7 @@ import roomsRequest from '../DBRequests/roomsRequest';
 
 export class Rooms extends Component {
     state = {
-        rooms: [],
+      rooms: [],
     }
 
     pushToRoom = (id) => {

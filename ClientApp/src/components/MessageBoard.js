@@ -6,7 +6,7 @@ class MessageBoard extends Component {
     super(props);
 
     this.state = {
-      nick: '',
+      username: '',
       message: '',
       messages: [],
       hubConnection: null,
@@ -14,23 +14,23 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
-    const nick = this.state.nick;
-
-    // const roomId = this.props.roomId;
+    const username = this.state.username;
 
     const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
-    this.setState({ hubConnection, nick }, () => {
-      this.state.hubConnection
-        .start()
-        .then(() => console.log('Connection started!'))
-        .catch(err => console.log('Error while establishing connection ->', err));
+    this.setState({ hubConnection, username }, () => {
+      this.state.hubConnection.start()
+        .then(() => {
+          console.log('Connection established!');
+        })
+        .catch(err => console.log('Error trying to establish a connection ->', err));
 
-      this.state.hubConnection.on('sendToAll', (nick, receivedMessage) => {
-        const text = `${nick}: ${receivedMessage}`;
+      this.state.hubConnection.on('sendToAll', (username, receivedMessage) => {
+        console.log('username: ', username);
+        const text = `${username}: ${receivedMessage}`;
         const messages = this.state.messages.concat([text]);
         this.setState({ messages });
       });
@@ -39,7 +39,7 @@ class MessageBoard extends Component {
 
   sendMessage = () => {
     this.state.hubConnection
-      .invoke('sendToAll', this.state.nick, this.state.message)
+      .invoke('sendToAll', this.state.username, this.state.message)
       .catch(err => console.error(err));
 
       this.setState({message: ''});
