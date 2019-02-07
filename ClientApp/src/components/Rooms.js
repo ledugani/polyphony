@@ -38,7 +38,6 @@ export class Rooms extends Component {
                         <button
                           className="btn btn-default"
                           onClick={() => {this.pushToRoom(room.roomId)}}
-
                           >
                             View
                         </button>
