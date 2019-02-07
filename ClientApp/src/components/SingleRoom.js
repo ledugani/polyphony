@@ -46,7 +46,7 @@ export class SingleRoom extends Component {
         </div>
         <div>
           <h2>Message Board</h2>
-          <MessageBoard />
+          <MessageBoard roomId={room.roomId} />
         </div>
       </div>
     );
