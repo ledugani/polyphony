@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as signalR from '@aspnet/signalr';
+import firebase from 'firebase';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -14,15 +15,12 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
-
-    const username = this.state.username;
-
     const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
-    this.setState({ hubConnection, username }, () => {
+    this.setState({ hubConnection }, () => {
       this.state.hubConnection.start()
         .then(() => {
           console.log('Connection established!');
@@ -30,11 +28,9 @@ class MessageBoard extends Component {
         .catch(err => console.log('Error trying to establish a connection ->', err));
 
       this.state.hubConnection.on('sendToAll', (username, receivedMessage) => {
-        // console.log('username: ', username);
-        // console.log('receivedMessage: ', receivedMessage);
+        username = firebase.auth().currentUser.displayName;
         const text = `${username}: ${receivedMessage}`;
         const messages = this.state.messages.concat([text]);
-        console.log('messages variable: ', messages);
         this.setState({ messages });
       });
     });
