@@ -22,6 +22,9 @@ export class SingleRoom extends Component {
     roomsRequest.getRoomById(roomId)
         .then((res) => {
           this.setState({ room: res });
+          firebase.auth().onAuthStateChanged((user) => {
+            console.log(user)
+          });
         })
         .catch((err) => {
           console.error(err);

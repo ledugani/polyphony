@@ -29,7 +29,6 @@ export class Registration extends Component {
                     FirebaseId: fbUser.user.uid
                   }
                   authRequests.addUser(newUser);
-                  console.log(user);
             })
             .catch((error) => {
                 console.error('There was an error with registration ->', error);

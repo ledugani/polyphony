@@ -16,20 +16,16 @@ import axios from 'axios';
 const registerUser = (user) => {
     return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(() => {
-            firebase.auth().currentUser.updateProfile({
-                displayName: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
-            });
+            firebase.auth().currentUser.updateProfile({displayName: user.username});
         });
 }
 
 const loginUser = (user) => {
     return firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-        .then((credentials) => {
-            credentials.user.getIdToken();
-            console.log('credentils from login user: ', credentials);
-        });
+        // .then((credentials) => {
+        //     credentials.user.getIdToken();
+        //     console.log('credentils from login user: ', credentials);
+        // });
         // .then((token) => {
         //     sessionStorage.setItem('token', token)
         //     console.log('token from login user: ',token);
