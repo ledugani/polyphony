@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export class Registration extends Component {
     state = {
         user: {
-            firstName: 'Tom',
-            lastName: 'Dugan',
-            username: 'ledugani',
-            email: 'tdugan85@gmail.com',
-            password: 'password'
+            firstName: '',
+            lastName: '',
+            username: '',
+            email: '',
+            password: ''
         },
     };
 
@@ -29,6 +29,7 @@ export class Registration extends Component {
                     FirebaseId: fbUser.user.uid
                   }
                   authRequests.addUser(newUser);
+                  console.log(user);
             })
             .catch((error) => {
                 console.error('There was an error with registration ->', error);

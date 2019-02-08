@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as signalR from '@aspnet/signalr';
-// import getJwt from '../';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -16,7 +15,6 @@ class MessageBoard extends Component {
 
   componentDidMount = () => {
 
-    // const jwt = getJwt();
     const username = this.state.username;
 
     const hubConnection = new signalR.HubConnectionBuilder()
@@ -32,9 +30,11 @@ class MessageBoard extends Component {
         .catch(err => console.log('Error trying to establish a connection ->', err));
 
       this.state.hubConnection.on('sendToAll', (username, receivedMessage) => {
-        console.log('username: ', username);
+        // console.log('username: ', username);
+        // console.log('receivedMessage: ', receivedMessage);
         const text = `${username}: ${receivedMessage}`;
         const messages = this.state.messages.concat([text]);
+        console.log('messages variable: ', messages);
         this.setState({ messages });
       });
     });

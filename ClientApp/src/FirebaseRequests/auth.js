@@ -1,32 +1,39 @@
 import firebase from 'firebase';
 import axios from 'axios';
 
-axios.interceptors.request.use((config) => {
-    const token = sessionStorage.getItem('token');
+// axios.interceptors.request.use((config) => {
+//     const token = sessionStorage.getItem('token');
 
-    if (token != null) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+//     if (token != null) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
 
-    return config;
-  }, function (err) {
-    return Promise.reject(err);
-});
+//     return config;
+//   }, function (err) {
+//     return Promise.reject(err);
+// });
 
 const registerUser = (user) => {
-    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        .then(() => {
+            firebase.auth().currentUser.updateProfile({
+                displayName: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+            });
+        });
 }
 
 const loginUser = (user) => {
     return firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then((credentials) => {
             credentials.user.getIdToken();
-            console.log('credentils from login user: ',credentials);
-        })
-        .then((token) => {
-            sessionStorage.setItem('token', token)
-            console.log('token from login user: ',token);
+            console.log('credentils from login user: ', credentials);
         });
+        // .then((token) => {
+        //     sessionStorage.setItem('token', token)
+        //     console.log('token from login user: ',token);
+        // });
 }
 
 const addUser = (user) => {

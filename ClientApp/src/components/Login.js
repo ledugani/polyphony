@@ -24,10 +24,10 @@ export class Login extends Component {
         console.error('There was an error in logging in -> ', error);
       });
 
-      Axios.post('/getToken', {
-        email: this.state.email,
-        password: this.state.password,
-      }).then(res => localStorage.setItem('cool-jwt', res.data));
+      // Axios.post('/getToken', {
+      //   email: this.state.email,
+      //   password: this.state.password,
+      // }).then(res => localStorage.setItem('cool-jwt', res.data));
   };
 
   emailChange = e => {
