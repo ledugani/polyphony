@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as signalR from '@aspnet/signalr';
+// import getJwt from '../';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
+
+    // const jwt = getJwt();
     const username = this.state.username;
 
     const hubConnection = new signalR.HubConnectionBuilder()

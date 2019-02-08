@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authRequests from '../FirebaseRequests/auth';
+import Axios from 'axios';
 
 export class Login extends Component {
   state = {
@@ -16,13 +17,17 @@ export class Login extends Component {
     e.preventDefault();
     authRequests
       .loginUser(user)
-      .then((res) => {
+      .then(() => {
         this.props.history.push('/rooms');
-        console.log(res);
       })
       .catch(error => {
         console.error('There was an error in logging in -> ', error);
       });
+
+      Axios.post('/getToken', {
+        email: this.state.email,
+        password: this.state.password,
+      }).then(res => localStorage.setItem('cool-jwt', res.data));
   };
 
   emailChange = e => {

@@ -1,10 +1,13 @@
-﻿using System;
-namespace Polyphony.Hubs
+﻿using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
+
+namespace SignalRChat.Hubs
 {
-    public class ChatHub
+    public class ChatHub : Hub
     {
-        public ChatHub()
+        public void SendToAll(string name, string message)
         {
+            Clients.All.SendAsync("sendToAll", name, message);
         }
     }
 }
