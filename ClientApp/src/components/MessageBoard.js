@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import * as signalR from '@aspnet/signalr';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 class MessageBoard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
+      currentUser: {},
       message: '',
       messages: [],
       hubConnection: null,
@@ -16,33 +16,41 @@ class MessageBoard extends Component {
 
   componentDidMount = () => {
     const hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chatHub", { accessTokenFactory: () => sessionStorage.getItem('token') })
     .configureLogging(signalR.LogLevel.Information)
     .build();
+
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.setState({ currentUser });
 
     this.setState({ hubConnection }, () => {
       this.state.hubConnection.start()
         .then(() => {
+          this.state.hubConnection.invoke("JoinRoom",this.props.roomName);
           console.log('Connection established!');
         })
         .catch(err => console.log('Error trying to establish a connection ->', err));
 
-      this.state.hubConnection.on('sendToAll', (username, receivedMessage) => {
-        username = firebase.auth().currentUser;
-        console.log(username);
-        const text = `${username}: ${receivedMessage}`;
-        const messages = this.state.messages.concat([text]);
-        this.setState({ messages });
-      });
+        this.state.hubConnection.on('Receive', (username, receivedMessage) => {
+          const text = `${username}: ${receivedMessage}`;
+          const messages = this.state.messages.concat([text]);
+          this.setState({ messages });
+        });
+
+        this.state.hubConnection.on('ReceiveNotification', (receivedMessage) => {
+          const text = `${receivedMessage}`;
+          const messages = this.state.messages.concat([text]);
+          this.setState({ messages });
+        });
     });
   };
 
   sendMessage = () => {
     this.state.hubConnection
-      .invoke('sendToAll', this.state.username, this.state.message)
+      .invoke('sendToRoom', this.props.roomName, this.state.message)
       .catch(err => console.error(err));
 
-      this.setState({message: ''});
+    this.setState({message: ''});
   };
 
   render() {

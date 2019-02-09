@@ -26,12 +26,6 @@ namespace Polyphony.Controllers
             return Ok(_roomAccess.GetRooms());
         }
 
-        //[HttpPost("NewUser")]
-        //public IActionResult AddNewUser(PUsers pUser)
-        //{
-        //    return Ok();
-        //}
-
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {
