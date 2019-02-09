@@ -31,6 +31,7 @@ export class Registration extends Component {
                             IsActive: 1,
                             FirebaseId: fbUser.uid
                         }
+                        sessionStorage.setItem('currentUser', JSON.stringify(newUser));
                         authRequests.addUser(newUser);
                     }
                   });
