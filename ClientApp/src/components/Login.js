@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authRequests from '../FirebaseRequests/auth';
 import userRequests from '../DBRequests/userRequests';
-import firebase from 'firebase';
-// import Axios from 'axios';
 
 export class Login extends Component {
   state = {
