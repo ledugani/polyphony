@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authRequests from '../FirebaseRequests/auth';
+import userRequests from '../DBRequests/userRequests';
 // import Axios from 'axios';
 
 export class Login extends Component {
@@ -15,6 +16,11 @@ export class Login extends Component {
   loginClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
+    userRequests
+      .getUserByEmail(user.email)
+      .then((res) => {
+        console.log(res);
+      });
     authRequests
       .loginUser(user)
       .then(() => {
@@ -23,11 +29,6 @@ export class Login extends Component {
       .catch(error => {
         console.error('There was an error in logging in -> ', error);
       });
-
-      // Axios.post('/getToken', {
-      //   email: this.state.email,
-      //   password: this.state.password,
-      // }).then(res => localStorage.setItem('cool-jwt', res.data));
   };
 
   emailChange = e => {

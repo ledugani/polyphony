@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import authRequests from '../FirebaseRequests/auth';
 import { Link } from 'react-router-dom';
+import firebase from 'firebase';
 
 export class Registration extends Component {
     state = {
@@ -18,17 +19,22 @@ export class Registration extends Component {
         e.preventDefault();
         authRequests
             .registerUser(user)
-            .then((fbUser) => {
+            .then(() => {
                 this.props.history.push('/');
-                const newUser = {
-                    FirstName: user.firstname,
-                    LastName: user.lastname,
-                    Username: user.username,
-                    EmailAddress: user.email,
-                    IsActive: 1,
-                    FirebaseId: fbUser.user.uid
-                  }
-                  authRequests.addUser(newUser);
+                firebase.auth().onAuthStateChanged((fbUser) => {
+                    if (fbUser) {
+                        const newUser = {
+                            first_Name: user.firstName,
+                            last_Name: user.lastName,
+                            Username: user.username,
+                            Email: user.email,
+                            IsActive: 1,
+                            FirebaseId: fbUser.uid
+                        }
+                        authRequests.addUser(newUser);
+                    }
+                  });
+
             })
             .catch((error) => {
                 console.error('There was an error with registration ->', error);

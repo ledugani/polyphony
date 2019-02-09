@@ -25,9 +25,22 @@ namespace Polyphony.DataAccess
                 dbConnection.Open();
 
                 var result = dbConnection.Execute(@"INSERT INTO Users (first_name, last_name, email, username, isActive, firebaseId) 
-                                                    VALUES (@FirstName,@LastName,@EmailAddress,@Username,@IsActive,@FirebaseId);", pUser);
+                                                    VALUES (@First_Name,@Last_Name,@Email,@Username,@IsActive,@FirebaseId);", pUser);
 
                 return result == 1;
+            }
+        }
+
+        public PUsers GetByEmail(string email)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var result = connection.QueryFirst<PUsers>(@"SELECT *
+                                                                FROM Users
+                                                                WHERE Users.email = @email", new { email });
+                return result;
             }
         }
     }

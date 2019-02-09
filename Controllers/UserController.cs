@@ -26,5 +26,12 @@ namespace Polyphony.Controllers
         {
             return Ok(_userAccess.AddNewUser(pUser));
         }
+
+        [HttpGet("{email}")]
+        public IActionResult GetUserByEmail(string email)
+        {
+            var result = _userAccess.GetByEmail(email);
+            return Ok(result);
+        }
     }
 }

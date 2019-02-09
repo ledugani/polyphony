@@ -28,7 +28,8 @@ class MessageBoard extends Component {
         .catch(err => console.log('Error trying to establish a connection ->', err));
 
       this.state.hubConnection.on('sendToAll', (username, receivedMessage) => {
-        username = firebase.auth().currentUser.displayName;
+        username = firebase.auth().currentUser;
+        console.log(username);
         const text = `${username}: ${receivedMessage}`;
         const messages = this.state.messages.concat([text]);
         this.setState({ messages });

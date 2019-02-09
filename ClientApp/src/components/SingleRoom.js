@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
 import MessageBoard from './MessageBoard';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 export class SingleRoom extends Component {
   state = {
@@ -22,9 +22,6 @@ export class SingleRoom extends Component {
     roomsRequest.getRoomById(roomId)
         .then((res) => {
           this.setState({ room: res });
-          firebase.auth().onAuthStateChanged((user) => {
-            console.log(user)
-          });
         })
         .catch((err) => {
           console.error(err);
