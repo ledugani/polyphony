@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
-import MessageBoard from './MessageBoard';
+import MessageBoard from './MessageBoard/MessageBoard';
 // import firebase from 'firebase';
 
 export class SingleRoom extends Component {

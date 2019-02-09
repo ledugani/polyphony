@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import './MessageBoard.css'
 import * as signalR from '@aspnet/signalr';
-// import firebase from 'firebase';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -37,8 +37,8 @@ class MessageBoard extends Component {
           this.setState({ messages });
         });
 
-        this.state.hubConnection.on('ReceiveNotification', (receivedMessage) => {
-          const text = `${receivedMessage}`;
+        this.state.hubConnection.on('ReceiveNotification', (message) => {
+          const text = `${message}`;
           const messages = this.state.messages.concat([text]);
           this.setState({ messages });
         });
@@ -57,6 +57,12 @@ class MessageBoard extends Component {
     return (
       <div>
         <br />
+        <div>
+          {this.state.messages.map((message, index) => (
+            <span style={{display: 'block'}} key={index}> {message} </span>
+          ))}
+        </div>
+
         <input
           type="text"
           value={this.state.message}
@@ -64,12 +70,6 @@ class MessageBoard extends Component {
         />
 
         <button onClick={this.sendMessage}>Send</button>
-
-        <div>
-          {this.state.messages.map((message, index) => (
-            <span style={{display: 'block'}} key={index}> {message} </span>
-          ))}
-        </div>
       </div>
     );
   }
