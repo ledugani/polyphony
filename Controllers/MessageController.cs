@@ -21,10 +21,10 @@ namespace Polyphony.Controllers
             _messageAccess = new MessageAccess(config);
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpGet("{roomid}")]
+        public ActionResult<IEnumerable<string>> Get(int roomid)
         {
-            return Ok(_messageAccess.GetMessages());
+            return Ok(_messageAccess.GetMessagesFromRoom(roomid));
         }
     }
 }

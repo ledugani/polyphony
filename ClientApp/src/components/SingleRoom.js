@@ -30,6 +30,12 @@ export class SingleRoom extends Component {
 
   render() {
     const room = this.state.room;
+    const messageBoard = this.state.room.roomId > 0 &&
+        (<MessageBoard
+          roomName={this.state.room.roomName}
+          roomId={this.state.room.roomId}
+        />);
+
     return (
       <div>
         <div>
@@ -46,7 +52,7 @@ export class SingleRoom extends Component {
         </div>
         <div>
           <h2>Message Board</h2>
-          <MessageBoard roomName={this.state.room.roomName} />
+          {messageBoard}
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './MessageBoard.css'
 import * as signalR from '@aspnet/signalr';
+import messageRequests from '../../DBRequests/messageRequests';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -15,6 +16,18 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
+    console.log(this.props);
+
+    messageRequests
+      .getMessagesByRoom(this.props.roomId)
+      .then((messages) => {
+        const allMessages = messages.concat(this.state.messages);
+        this.setState({ messages: allMessages });
+      })
+      .catch((err) => {
+        console.error('There was an issue getting the messages from this room -> ', err);
+      });
+
     const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub", { accessTokenFactory: () => sessionStorage.getItem('token') })
     .configureLogging(signalR.LogLevel.Information)
@@ -26,6 +39,7 @@ class MessageBoard extends Component {
     this.setState({ hubConnection }, () => {
       this.state.hubConnection.start()
         .then(() => {
+          console.log(this.props);
           this.state.hubConnection.invoke("JoinRoom",this.props.roomName);
           console.log('Connection established!');
         })
@@ -57,7 +71,7 @@ class MessageBoard extends Component {
     return (
       <div>
         <br />
-        <div>
+        <div className="banana">
           {this.state.messages.map((message, index) => (
             <span style={{display: 'block'}} key={index}> {message} </span>
           ))}

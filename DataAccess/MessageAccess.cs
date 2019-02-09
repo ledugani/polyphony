@@ -18,13 +18,13 @@ namespace Polyphony.DataAccess
             connectionstring = config.GetSection("ConnectionString").Value;
         }
 
-        public IEnumerable<Messages> GetMessages()
+        public IEnumerable<Messages> GetMessagesFromRoom(int roomid)
         {
             using (var db = new SqlConnection(connectionstring))
             {
                 db.Open();
 
-                var result = db.Query<Messages>(@"SELECT * FROM messagesent");
+                var result = db.Query<Messages>(@"SELECT * FROM messagesent WHERE roomid = @roomid", new { roomid });
 
                 return result.ToList();
             }

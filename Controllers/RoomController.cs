@@ -27,7 +27,7 @@ namespace Polyphony.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProductById(int id)
+        public IActionResult GetRoomById(int id)
         {
             var result = _roomAccess.GetById(id);
             return Ok(result);
