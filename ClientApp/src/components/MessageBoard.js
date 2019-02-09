@@ -1,51 +1,70 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import * as signalR from '@aspnet/signalr';
+import firebase from 'firebase';
 
-import Message from './Message.js';
+class MessageBoard extends Component {
+  constructor(props) {
+    super(props);
 
-class MessageBoard extends React.Component {
-    constructor(props) {
-        super(props);
+    this.state = {
+      username: '',
+      message: '',
+      messages: [],
+      hubConnection: null,
+    };
+  }
 
-        this.state = {
-          messages: [],
-        };
+  componentDidMount = () => {
+    const hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl("/chatHub")
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
 
-        this.submitMessage = this.submitMessage.bind(this);
-    }
+    this.setState({ hubConnection }, () => {
+      this.state.hubConnection.start()
+        .then(() => {
+          console.log('Connection established!');
+        })
+        .catch(err => console.log('Error trying to establish a connection ->', err));
 
-    submitMessage(e) {
-      e.preventDefault();
-
-      this.setState({
-        messages: this.state.messages.concat([{
-            username: "ledugani",
-            content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
-        }])
-      }, () => {
-        ReactDOM.findDOMNode(this.refs.msg).value = "";
+      this.state.hubConnection.on('sendToAll', (username, receivedMessage) => {
+        username = firebase.auth().currentUser;
+        console.log(username);
+        const text = `${username}: ${receivedMessage}`;
+        const messages = this.state.messages.concat([text]);
+        this.setState({ messages });
       });
-    }
+    });
+  };
 
-    render() {
-      const { messages } = this.state;
+  sendMessage = () => {
+    this.state.hubConnection
+      .invoke('sendToAll', this.state.username, this.state.message)
+      .catch(err => console.error(err));
 
-      return (
-          <div className="chatroom">
-              <ul className="messages" ref="messages">
-                  {
-                    messages.map((chat) =>
-                        <Message chat={chat} user={messages.username} />
-                    )
-                  }
-              </ul>
-              <form className="input" onSubmit={(e) => this.submitMessage(e)}>
-                  <input type="text" ref="msg" />
-                  <input type="submit" value="Submit" />
-              </form>
-          </div>
-      );
-    }
+      this.setState({message: ''});
+  };
+
+  render() {
+    return (
+      <div>
+        <br />
+        <input
+          type="text"
+          value={this.state.message}
+          onChange={e => this.setState({ message: e.target.value })}
+        />
+
+        <button onClick={this.sendMessage}>Send</button>
+
+        <div>
+          {this.state.messages.map((message, index) => (
+            <span style={{display: 'block'}} key={index}> {message} </span>
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default MessageBoard;

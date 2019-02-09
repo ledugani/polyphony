@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
 import MessageBoard from './MessageBoard';
+// import firebase from 'firebase';
 
 export class SingleRoom extends Component {
   state = {
@@ -14,7 +15,6 @@ export class SingleRoom extends Component {
       startTime: '',
     },
     users: [],
-    messages: [],
   }
 
   componentDidMount() {
@@ -46,7 +46,7 @@ export class SingleRoom extends Component {
         </div>
         <div>
           <h2>Message Board</h2>
-          <MessageBoard />
+          <MessageBoard username={room.roomId} />
         </div>
       </div>
     );

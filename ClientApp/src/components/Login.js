@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authRequests from '../FirebaseRequests/auth';
+import userRequests from '../DBRequests/userRequests';
 
 export class Login extends Component {
   state = {
@@ -14,14 +15,18 @@ export class Login extends Component {
   loginClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
+    userRequests
+      .getUserByEmail(user.email)
+      .then((res) => {
+        sessionStorage.setItem('currentUser', JSON.stringify(res));
+      });
     authRequests
       .loginUser(user)
-      .then((res) => {
+      .then(() => {
         this.props.history.push('/rooms');
-        console.log(res);
       })
       .catch(error => {
-        console.error('there was an error in login', error);
+        console.error('There was an error in logging in -> ', error);
       });
   };
 
