@@ -26,5 +26,11 @@ namespace Polyphony.Controllers
         {
             return Ok(_messageAccess.GetMessagesFromRoom(roomid));
         }
+
+        [HttpPost("new")]
+        public IActionResult AddNewMessage(Messages message)
+        {
+            return Ok(_messageAccess.AddMessage(message));
+        }
     }
 }

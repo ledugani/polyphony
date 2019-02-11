@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
 import MessageBoard from './MessageBoard/MessageBoard';
+import messageRequests from '../DBRequests/messageRequests';
 // import firebase from 'firebase';
 
 export class SingleRoom extends Component {
@@ -15,17 +16,26 @@ export class SingleRoom extends Component {
       startTime: '',
     },
     users: [],
+    messages: [],
   }
 
   componentDidMount() {
     const roomId = this.props.match.params.id;
     roomsRequest.getRoomById(roomId)
-        .then((res) => {
-          this.setState({ room: res });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      .then((res) => {
+        this.setState({ room: res });
+      })
+      .catch((err) => {
+        console.error('There was an error getting room by id -> ', err);
+      });
+
+    messageRequests.getMessagesByRoom(roomId)
+      .then((res) => {
+        this.setState({messages: res});
+      })
+      .catch(err => {
+        console.error('There was a problem setting the room history to state -> ', err);
+      });
   }
 
   render() {
@@ -34,6 +44,7 @@ export class SingleRoom extends Component {
         (<MessageBoard
           roomName={this.state.room.roomName}
           roomId={this.state.room.roomId}
+          history={this.state.messages}
         />);
 
     return (

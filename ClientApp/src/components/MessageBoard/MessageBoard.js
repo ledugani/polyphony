@@ -16,17 +16,14 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props);
-
-    messageRequests
-      .getMessagesByRoom(this.props.roomId)
-      .then((messages) => {
-        const allMessages = messages.concat(this.state.messages);
-        this.setState({ messages: allMessages });
-      })
-      .catch((err) => {
-        console.error('There was an issue getting the messages from this room -> ', err);
-      });
+    // messageRequests
+    //   .getMessagesByRoom(this.props.roomId)
+    //   .then((messages) => {
+    //     this.setState({history: messages});
+    //   })
+    //   .catch((err) => {
+    //     console.error('There was an issue getting the messages for this room -> ', err);
+    //   });
 
     const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub", { accessTokenFactory: () => sessionStorage.getItem('token') })
@@ -39,7 +36,6 @@ class MessageBoard extends Component {
     this.setState({ hubConnection }, () => {
       this.state.hubConnection.start()
         .then(() => {
-          console.log(this.props);
           this.state.hubConnection.invoke("JoinRoom",this.props.roomName);
           console.log('Connection established!');
         })
@@ -48,16 +44,30 @@ class MessageBoard extends Component {
         this.state.hubConnection.on('Receive', (username, receivedMessage) => {
           const text = `${username}: ${receivedMessage}`;
           const messages = this.state.messages.concat([text]);
-          this.setState({ messages });
+          this.setState({ ...this.state.messages, messages });
         });
 
         this.state.hubConnection.on('ReceiveNotification', (message) => {
           const text = `${message}`;
           const messages = this.state.messages.concat([text]);
-          this.setState({ messages });
+          this.setState({ ...this.state.messages, messages });
         });
     });
   };
+
+  // componentWillUnmount() {
+  //   // user leaves the room
+  //   this.state.hubConnection
+  //     .invoke("LeaveRoom", this.props.roomName)
+  //     .on('ReceiveNotification', (message) => {
+  //       const text = `${message}`;
+  //       const messages = this.state.messages.concat([text]);
+  //       this.setState({ messages });
+  //     })
+  //     .catch((err) => {
+  //       console.error('There was an error sending the user leave room message -> ', err);
+  //     });
+  // }
 
   sendMessage = () => {
     this.state.hubConnection
@@ -68,9 +78,17 @@ class MessageBoard extends Component {
   };
 
   render() {
+    const messageHistory = this.props.history.map((message) => {
+      <p>{message.username}: {message.content}</p>
+    });
     return (
       <div>
+        <div>
+          {messageHistory}
+        </div>
+
         <br />
+
         <div className="banana">
           {this.state.messages.map((message, index) => (
             <span style={{display: 'block'}} key={index}> {message} </span>

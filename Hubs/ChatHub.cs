@@ -18,6 +18,9 @@ namespace SignalRChat.Hubs
         public void SendToRoom(string room, string message)
         {
             Clients.Group(room).SendAsync("Receive",  UserName, message);
+
+            //mydatabaseclass.addmessage(room,message);
+
         }
 
         public void JoinRoom(string room)
@@ -31,20 +34,5 @@ namespace SignalRChat.Hubs
             Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
             Clients.Group(room).SendAsync("ReceiveNotification", $"{UserName} has left the room.");
         }
-
-        //protected override Task OnReceivedAsync(IRequest request, string connectionId, string data)
-        //{
-        //    Messages chatData = JsonConvert.DeserializeObject<Messages>(data);
-        //    _clients[connectionId] = chatData.Username;
-        //    return Connection.Broadcast(chatData);
-        //}
-
-        //protected override Task OnDisconnectAsync(IRequest request, string connectionId)
-        //{
-        //    string name = _clients[connectionId];
-        //    ChatData chatData = new ChatData("Server", string.Format("{0} has left the room.", name));
-        //    _clients.Remove(connectionId);
-        //    return Connection.Broadcast(chatData);
-        //}
     }
 }

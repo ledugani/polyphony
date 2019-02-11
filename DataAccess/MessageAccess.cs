@@ -24,9 +24,22 @@ namespace Polyphony.DataAccess
             {
                 db.Open();
 
-                var result = db.Query<Messages>(@"SELECT * FROM messagesent WHERE roomid = @roomid", new { roomid });
+                var result = db.Query<Messages>(@"SELECT username, content FROM messagesent WHERE roomid = @roomid", new { roomid });
 
                 return result.ToList();
+            }
+        }
+
+        public bool AddMessage(Messages message)
+        {
+            using (var db = new SqlConnection(connectionstring))
+            {
+                db.Open();
+
+                var banana = db.Execute(@"INSERT INTO messagesent (roomid, content, timesent, username) 
+                                                    VALUES (@roomid,@content,getDate(),@Username);", message);
+
+                return banana == 1;
             }
         }
     }
