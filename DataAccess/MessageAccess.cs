@@ -24,7 +24,10 @@ namespace Polyphony.DataAccess
             {
                 db.Open();
 
-                var result = db.Query<Messages>(@"SELECT * FROM messagesent WHERE roomid = @roomid", new { roomid });
+                var result = db.Query<Messages>(@"SELECT * 
+                                                    FROM messagesent 
+                                                    WHERE roomid = @roomid 
+                                                    ORDER BY timesent ASC", new { roomid });
 
                 return result.ToList();
             }

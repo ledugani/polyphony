@@ -72,9 +72,9 @@ class MessageBoard extends Component {
 
   sendMessage = () => {
     const messageToDb = {
-        "roomid": this.props.roomId,
-        "content": this.state.message,
-        "username": this.state.currentUser.username
+      "roomid": this.props.roomId,
+      "content": this.state.message,
+      "username": this.state.currentUser.username
     }
 
     this.state.hubConnection
@@ -95,7 +95,6 @@ class MessageBoard extends Component {
 
   render() {
     const history = this.state.messageHistory.map((msg, index) => {
-      console.log(msg);
       <span key={index}>
         <p>{msg.username}</p>
         <p>{msg.content}</p>
