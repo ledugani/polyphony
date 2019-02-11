@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
 import MessageBoard from './MessageBoard/MessageBoard';
 import messageRequests from '../DBRequests/messageRequests';
+import { Glyphicon } from 'react-bootstrap';
+
 // import firebase from 'firebase';
 
 export class SingleRoom extends Component {
@@ -38,17 +40,29 @@ export class SingleRoom extends Component {
       });
   }
 
+  goBack = () => {
+    this.props.history.push('/rooms');
+  }
+
   render() {
     const room = this.state.room;
     const messageBoard = this.state.room.roomId > 0 &&
         (<MessageBoard
           roomName={this.state.room.roomName}
           roomId={this.state.room.roomId}
-          history={this.state.messages}
+          messageHistory={this.state.messages}
         />);
 
     return (
       <div>
+        <button
+          className="btn btn-default"
+          onClick={this.goBack}
+        >
+          <Glyphicon glyph="chevron-left" />
+          &nbsp;
+          Back
+        </button>
         <div>
           <h1>{room.roomName}</h1>
           <p>{room.roomDescription}</p>

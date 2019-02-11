@@ -9,6 +9,7 @@ class MessageBoard extends Component {
 
     this.state = {
       currentUser: {},
+      messageHistory: [],
       message: '',
       messages: [],
       hubConnection: null,
@@ -16,14 +17,14 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
-    // messageRequests
-    //   .getMessagesByRoom(this.props.roomId)
-    //   .then((messages) => {
-    //     this.setState({history: messages});
-    //   })
-    //   .catch((err) => {
-    //     console.error('There was an issue getting the messages for this room -> ', err);
-    //   });
+    messageRequests
+      .getMessagesByRoom(this.props.roomId)
+      .then((messages) => {
+        this.setState({messageHistory: messages});
+      })
+      .catch((err) => {
+        console.error('There was an issue getting the messages for this room -> ', err);
+      });
 
     const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub", { accessTokenFactory: () => sessionStorage.getItem('token') })
@@ -70,21 +71,40 @@ class MessageBoard extends Component {
   // }
 
   sendMessage = () => {
+    const messageToDb = {
+        "roomid": this.props.roomId,
+        "content": this.state.message,
+        "username": this.state.currentUser.username
+    }
+
     this.state.hubConnection
       .invoke('sendToRoom', this.props.roomName, this.state.message)
-      .catch(err => console.error(err));
+      .catch(err => console.error('There was a problem sending the message -> ', err));
 
     this.setState({message: ''});
+
+    messageRequests
+      .addNewMessage(messageToDb)
+      .then(() => {
+        console.log('Successfully sent message to the db!');
+      })
+      .catch(err => {
+        console.error('There was a problem sending this message to the db -> ', err);
+      });
   };
 
   render() {
-    const messageHistory = this.props.history.map((message) => {
-      <p>{message.username}: {message.content}</p>
-    });
+    const history = this.state.messageHistory.map((msg, index) => {
+      console.log(msg);
+      <span key={index}>
+        <p>{msg.username}</p>
+        <p>{msg.content}</p>
+      </span>
+    })
     return (
       <div>
         <div>
-          {messageHistory}
+          {history}
         </div>
 
         <br />
