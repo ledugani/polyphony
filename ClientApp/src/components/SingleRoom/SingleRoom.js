@@ -49,10 +49,6 @@ export class SingleRoom extends Component {
     this.props.history.push('/rooms');
   }
 
-  // componentDidUpdate() {
-  //   ReactDOM.render(users, document.getElementById('active'));
-  // }
-
   render() {
     const room = this.state.room;
     const messageBoard = this.state.room.roomId > 0 &&
