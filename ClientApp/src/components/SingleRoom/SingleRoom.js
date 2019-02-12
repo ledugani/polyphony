@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import roomsRequest from '../DBRequests/roomsRequest';
-import MessageBoard from './MessageBoard/MessageBoard';
-import messageRequests from '../DBRequests/messageRequests';
+import roomsRequest from '../../DBRequests/roomsRequest';
+import MessageBoard from '../MessageBoard/MessageBoard';
+import messageRequests from '../../DBRequests/messageRequests';
 import { Glyphicon } from 'react-bootstrap';
+import './SingleRoom.css';
 
 // import firebase from 'firebase';
 
@@ -40,6 +41,11 @@ export class SingleRoom extends Component {
       });
   }
 
+  activeUsersChange = (user) => {
+    console.log(user);
+    // this.setState({users: user});
+  }
+
   goBack = () => {
     this.props.history.push('/rooms');
   }
@@ -48,9 +54,10 @@ export class SingleRoom extends Component {
     const room = this.state.room;
     const messageBoard = this.state.room.roomId > 0 &&
         (<MessageBoard
-          roomName={this.state.room.roomName}
-          roomId={this.state.room.roomId}
-          messageHistory={this.state.messages}
+            roomName={this.state.room.roomName}
+            roomId={this.state.room.roomId}
+            messageHistory={this.state.messages}
+            activeUsersChange={this.activeUsersChange}
         />);
 
     return (
@@ -67,15 +74,15 @@ export class SingleRoom extends Component {
           <h1>{room.roomName}</h1>
           <p>{room.roomDescription}</p>
         </div>
-        <div>
-          <div>
+        <div className="top">
+          <div className="soundcloud">
             <h2>SoundCloud</h2>
           </div>
-          <div>
+          <div className="activeusers">
             <h2>Active Users</h2>
           </div>
         </div>
-        <div>
+        <div className="bottom">
           <h2>Message Board</h2>
           {messageBoard}
         </div>

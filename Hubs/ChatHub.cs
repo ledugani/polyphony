@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Security.Claims;
+using System.Collections.Concurrent;
 
 namespace SignalRChat.Hubs
 {
     public class ChatHub : Hub
     {
         // private Dictionary<string, string> _clients = new Dictionary<string, string>();
+        static ConcurrentDictionary<string, List<string>> _usersInRooms = new ConcurrentDictionary<string, List<string>>();
 
         string UserName => Context.User.FindFirst(x => x.Type == "name").Value;
 
@@ -23,16 +25,33 @@ namespace SignalRChat.Hubs
 
         }
 
-        public void JoinRoom(string room)
+        public async Task JoinRoom(string room)
         {
-            Groups.AddToGroupAsync(Context.ConnectionId, room);
-            Clients.Group(room).SendAsync("ReceiveNotification",$"{UserName} has joined the room.");
+            await Groups.AddToGroupAsync(Context.ConnectionId, room);
+            await Clients.Group(room).SendAsync("ReceiveNotification",$"{UserName} has joined the room.");
+
+            if(!_usersInRooms.ContainsKey(room))
+            {
+                _usersInRooms.TryAdd(room, new List<string>());
+            }
+
+            _usersInRooms[room].Add(UserName);
+
+
+            await Clients.Group(room).SendAsync("ActiveUsersChanged", _usersInRooms[room]);
+
         }
 
-        public void LeaveRoom(string room)
+        public async Task LeaveRoom(string room)
         {
-            Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
-            Clients.Group(room).SendAsync("ReceiveNotification", $"{UserName} has left the room.");
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
+            await Clients.Group(room).SendAsync("ReceiveNotification", $"{UserName} has left the room.");
+
+            if (_usersInRooms.ContainsKey(room))
+            {
+                _usersInRooms[room].Remove(UserName);
+                await Clients.Group(room).SendAsync("ActiveUsersChanged", _usersInRooms[room]);
+            }
         }
     }
 }

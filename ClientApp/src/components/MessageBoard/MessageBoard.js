@@ -8,6 +8,7 @@ class MessageBoard extends Component {
     super(props);
 
     this.state = {
+      activeUsers: [],
       currentUser: {},
       messageHistory: [],
       message: '',
@@ -48,6 +49,12 @@ class MessageBoard extends Component {
           this.setState({ ...this.state.messages, messages });
         });
 
+        this.state.hubConnection.on('ActiveUsersChanged', (listOfUsers) => {
+          this.setState({ activeUsers: listOfUsers });
+          console.log(listOfUsers);
+          //this.props.activeUsersChange(listOfUsers);
+        });
+
         this.state.hubConnection.on('ReceiveNotification', (message) => {
           const text = `${message}`;
           const messages = this.state.messages.concat([text]);
@@ -56,19 +63,14 @@ class MessageBoard extends Component {
     });
   };
 
-  // componentWillUnmount() {
-  //   // user leaves the room
-  //   this.state.hubConnection
-  //     .invoke("LeaveRoom", this.props.roomName)
-  //     .on('ReceiveNotification', (message) => {
-  //       const text = `${message}`;
-  //       const messages = this.state.messages.concat([text]);
-  //       this.setState({ messages });
-  //     })
-  //     .catch((err) => {
-  //       console.error('There was an error sending the user leave room message -> ', err);
-  //     });
-  // }
+  componentWillUnmount() {
+    // user leaves the room
+    this.state.hubConnection
+      .invoke("LeaveRoom", this.props.roomName)
+      .catch((err) => {
+        console.error('There was an error sending the user leave room message -> ', err);
+      });
+  }
 
   sendMessage = () => {
     const messageToDb = {
@@ -95,32 +97,32 @@ class MessageBoard extends Component {
 
   render() {
     const history = this.state.messageHistory.map((msg, index) => {
-      <span key={index}>
-        <p>{msg.username}</p>
-        <p>{msg.content}</p>
-      </span>
+      return (<span key={index}>
+        <p>{msg.username}: {msg.content}</p>
+      </span>)
     })
     return (
       <div>
-        <div>
-          {history}
-        </div>
-
         <br />
 
         <div className="banana">
+          <div>
+            {history}
+          </div>
           {this.state.messages.map((message, index) => (
             <span style={{display: 'block'}} key={index}> {message} </span>
           ))}
         </div>
 
-        <input
-          type="text"
-          value={this.state.message}
-          onChange={e => this.setState({ message: e.target.value })}
-        />
-
-        <button onClick={this.sendMessage}>Send</button>
+        <div className="input-group">
+          <input type="text"
+            className="form-control"
+            value={this.state.message}
+            onChange={e => this.setState({ message: e.target.value })}
+            aria-describedby="basic-addon2"
+          />
+          <span className="input-group-addon" id="basic-addon2" onClick={this.sendMessage}>Send</span>
+        </div>
       </div>
     );
   }

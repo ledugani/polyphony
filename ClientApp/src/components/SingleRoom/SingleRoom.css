@@ -1,0 +1,9 @@
+.soundcloud {
+  width: 50%;
+  float: left;
+}
+
+.activeusers {
+  width: 50%;
+  float: right;
+}
