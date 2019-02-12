@@ -8,7 +8,7 @@ class MessageBoard extends Component {
     super(props);
 
     this.state = {
-      activeUsers: [],
+      //activeUsers: [],
       currentUser: {},
       messageHistory: [],
       message: '',
@@ -50,9 +50,8 @@ class MessageBoard extends Component {
         });
 
         this.state.hubConnection.on('ActiveUsersChanged', (listOfUsers) => {
-          this.setState({ activeUsers: listOfUsers });
-          console.log(listOfUsers);
-          //this.props.activeUsersChange(listOfUsers);
+          // this.setState({ activeUsers: listOfUsers });
+          this.props.activeUsersChange(listOfUsers);
         });
 
         this.state.hubConnection.on('ReceiveNotification', (message) => {

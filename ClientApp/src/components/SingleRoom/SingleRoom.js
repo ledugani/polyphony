@@ -42,8 +42,7 @@ export class SingleRoom extends Component {
   }
 
   activeUsersChange = (user) => {
-    console.log(user);
-    // this.setState({users: user});
+    this.setState({users: user});
   }
 
   goBack = () => {
@@ -59,6 +58,12 @@ export class SingleRoom extends Component {
             messageHistory={this.state.messages}
             activeUsersChange={this.activeUsersChange}
         />);
+
+    const currentUsers = this.state.users.map((user, index) => {
+      <li key={index}>
+        {user}
+      </li>
+    });
 
     return (
       <div>
@@ -80,6 +85,9 @@ export class SingleRoom extends Component {
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>
+            <ul>
+              {currentUsers}
+            </ul>
           </div>
         </div>
         <div className="bottom">
