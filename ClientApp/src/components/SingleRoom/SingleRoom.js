@@ -5,12 +5,10 @@ import messageRequests from '../../DBRequests/messageRequests';
 import { Glyphicon } from 'react-bootstrap';
 import './SingleRoom.css';
 
-// import firebase from 'firebase';
-
 export class SingleRoom extends Component {
   state = {
     room: {
-      artistId: '',
+      creator: '',
       currentTime: '',
       endTime: '',
       roomDescription: '',
@@ -80,9 +78,9 @@ export class SingleRoom extends Component {
           <p>{room.roomDescription}</p>
         </div>
         <div className="top">
-          <div className="soundcloud">
-            <h2>SoundCloud</h2>
-            <iframe width="80%" height="150" scrolling="no" frameBorder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/239658684&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+          <div className="tunes">
+            <h2>Tunes</h2>
+            <iframe src="https://open.spotify.com/embed/album/3yvubzjqmhnZhVwp6qDXPq" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>

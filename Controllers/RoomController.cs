@@ -32,5 +32,11 @@ namespace Polyphony.Controllers
             var result = _roomAccess.GetById(id);
             return Ok(result);
         }
+
+        [HttpPost("new")]
+        public IActionResult AddNewRoom(Rooms room)
+        {
+            return Ok(_roomAccess.AddRoom(room));
+        }
     }
 }

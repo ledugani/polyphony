@@ -41,5 +41,18 @@ namespace Polyphony.DataAccess
                 return result;
             }
         }
+
+        public bool AddRoom(Rooms room)
+        {
+            using (var db = new SqlConnection(connectionstring))
+            {
+                db.Open();
+
+                var labamba = db.Execute(@"INSERT INTO room (creator, roomname, roomdescription, tunelink) 
+                                                    VALUES (@creator,@roomname,@roomdescription,@tunelink);", room);
+
+                return labamba == 1;
+            }
+        }
     }
 }
