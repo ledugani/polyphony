@@ -7,6 +7,7 @@ using System.Diagnostics.Contracts;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Security.Claims;
 using System.Collections.Concurrent;
+using System.Linq;
 
 namespace SignalRChat.Hubs
 {
@@ -35,8 +36,9 @@ namespace SignalRChat.Hubs
                 _usersInRooms.TryAdd(room, new List<string>());
             }
 
-            _usersInRooms[room].Add(UserName);
-
+            if(!_usersInRooms[room].Any(u => u == UserName) ){
+                _usersInRooms[room].Add(UserName);
+            }
 
             await Clients.Group(room).SendAsync("ActiveUsersChanged", _usersInRooms[room]);
 

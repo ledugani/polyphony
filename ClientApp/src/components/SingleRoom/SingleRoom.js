@@ -49,6 +49,10 @@ export class SingleRoom extends Component {
     this.props.history.push('/rooms');
   }
 
+  // componentDidUpdate() {
+  //   ReactDOM.render(users, document.getElementById('active'));
+  // }
+
   render() {
     const room = this.state.room;
     const messageBoard = this.state.room.roomId > 0 &&
@@ -60,9 +64,9 @@ export class SingleRoom extends Component {
         />);
 
     const currentUsers = this.state.users.map((user, index) => {
-      <li key={index}>
+      return (<li key={index}>
         {user}
-      </li>
+      </li>)
     });
 
     return (
@@ -85,7 +89,7 @@ export class SingleRoom extends Component {
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>
-            <ul>
+            <ul id="active">
               {currentUsers}
             </ul>
           </div>
