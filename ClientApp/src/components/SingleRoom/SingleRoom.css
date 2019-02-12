@@ -1,9 +1,12 @@
 .soundcloud {
   width: 50%;
+  height: 200px;
   float: left;
 }
 
 .activeusers {
   width: 50%;
   float: right;
+  height: 200px;
+  overflow-y: auto;
 }
