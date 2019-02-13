@@ -27,15 +27,14 @@ export class Rooms extends Component {
         return (
           <div key={room.roomId} className="panel panel-default">
             <div className="panel-body">
-              {room.artistId}
+              <strong>{room.roomName}</strong>
               &nbsp;
               |
               &nbsp;
-              {room.roomName}
+              Creator: {room.creator}
               &nbsp;
               |
               &nbsp;
-              {room.startTime}
               <button
                 className="btn btn-default view"
                 onClick={() => {this.pushToRoom(room.roomId)}}

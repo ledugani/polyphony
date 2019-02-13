@@ -9,12 +9,10 @@ export class SingleRoom extends Component {
   state = {
     room: {
       creator: '',
-      currentTime: '',
-      endTime: '',
       roomDescription: '',
       roomId: '',
       roomName: '',
-      startTime: '',
+      tuneLink: '',
     },
     users: [],
     messages: [],
@@ -80,7 +78,7 @@ export class SingleRoom extends Component {
         <div className="top">
           <div className="tunes">
             <h2>Tunes</h2>
-            <iframe src="https://open.spotify.com/embed/album/3yvubzjqmhnZhVwp6qDXPq" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src={this.state.room.tuneLink} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>
@@ -91,7 +89,9 @@ export class SingleRoom extends Component {
         </div>
         <div className="bottom">
           <h2>Message Board</h2>
-          {messageBoard}
+          <div>
+            {messageBoard}
+          </div>
         </div>
       </div>
     );
