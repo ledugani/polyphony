@@ -7,9 +7,10 @@ export class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="jumbotron">
                 <h1>Project Polyphony</h1>
                 <p>Welcome to Polyphony, your online hub for new music listening.</p>
+                <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
             </div>
         );
     }

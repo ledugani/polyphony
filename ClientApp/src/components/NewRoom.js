@@ -1,24 +1,27 @@
 import React from 'react';
 import roomsRequest from '../DBRequests/roomsRequest';
+import { Glyphicon } from 'react-bootstrap';
 
 class NewRoom extends React.Component {
   state = {
     newRoom: {
-      name: '',
-      description: '',
+      roomName: '',
+      roomDescription: '',
       creator: '',
-      start_time: '',
-      end_time: '',
-      soundcloud: ''
+      tuneLink: ''
     }
   }
 
-  dateChange = (e) => {
-    const temporRoom = {
-      ...this.state.newRoom,
-      start_time: e.target.value,
-    }
-    this.setState({newRoom: temporRoom})
+  // dateChange = (e) => {
+  //   const temporRoom = {
+  //     ...this.state.newRoom,
+  //     start_time: e.target.value,
+  //   }
+  //   this.setState({newRoom: temporRoom})
+  // }
+
+  goBack = () => {
+    this.props.history.push('/rooms');
   }
 
   formFieldStringState = (name, e) => {
@@ -28,23 +31,24 @@ class NewRoom extends React.Component {
   };
 
   titleChange = (e) => {
-    this.formFieldStringState('name', e);
+    this.formFieldStringState('roomName', e);
   }
 
   descriptionChange = (e) => {
-    this.formFieldStringState('description', e);
+    this.formFieldStringState('roomDescription', e);
   };
 
   linkChange = (e) => {
-    this.formFieldStringState('soundcloud', e);
+    this.formFieldStringState('tuneLink', e);
   };
 
   formSubmitEvent = (e) => {
     const newRoom = this.state.newRoom;
     e.preventDefault();
-    roomsRequest.postRequest(newRoom)
+    roomsRequest.addNewRoom(newRoom)
       .then(() => {
         // confirmation notification
+        console.log('Success creating room!');
       })
       .catch((err) => {
         console.error('There was a problem with creating the room -> ', err);
@@ -67,6 +71,14 @@ class NewRoom extends React.Component {
     return (
       <div className="NewRoom">
         <h1>New Room</h1>
+        <button
+          className="btn btn-default"
+          onClick={this.goBack}
+        >
+          <Glyphicon glyph="chevron-left" />
+          &nbsp;
+          Back
+        </button>
         <div className="col-xs-8 panel panel-info col-xs-offset-2">
           <form className="panel-body" onSubmit={this.formSubmitEvent}>
             <div className="form-group">
@@ -76,7 +88,7 @@ class NewRoom extends React.Component {
                 className="form-control"
                 id="roomName"
                 placeholder="Skeevy Salamander"
-                value={newRoom.name}
+                value={newRoom.roomName}
                 onChange={this.titleChange}
               />
             </div>
@@ -93,11 +105,11 @@ class NewRoom extends React.Component {
                 className="form-control"
                 id="description"
                 rows="3"
-                value={newRoom.description}
+                value={newRoom.roomDescription}
                 onChange={this.descriptionChange}
               />
             </div>
-            <div className="form-group form-inline">
+            {/* <div className="form-group form-inline">
               <label htmlFor="datetime">Start Date: </label>
               <input
                 type="date"
@@ -105,15 +117,15 @@ class NewRoom extends React.Component {
                 placeholder="MM/DD/YYYY"
                 onChange={ (e) => this.dateChange(e) }
               />
-            </div>
+            </div> */}
             <div className="form-group">
-              <label htmlFor="soundcloudLink">SoundCloud Embed URL:</label>
+              <label htmlFor="soundcloudLink">Tune URL:</label>
               <input
                 type="text"
                 className="form-control"
                 id="soundcloudLink"
-                placeholder='<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/366801677&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>'
-                value={newRoom.soundcloud}
+                placeholder='Grab the url of the album or song from SoundCloud, Spotify, or BandCamp...'
+                value={newRoom.tuneLink}
                 onChange={this.linkChange}
               />
             </div>

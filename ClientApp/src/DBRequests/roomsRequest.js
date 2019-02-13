@@ -13,6 +13,19 @@ const getRequest = () => {
     })
 };
 
+const addNewRoom = (room) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`api/room/new`, room)
+        .then(res => {
+          resolve(res.data);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    })
+  };
+
 const getRoomById = (id) => {
     return new Promise((resolve, reject) => {
         axios
@@ -26,4 +39,4 @@ const getRoomById = (id) => {
     });
 };
 
-export default { getRequest, getRoomById }
+export default { getRequest, getRoomById, addNewRoom }
