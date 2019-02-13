@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MessageBoard.css'
 import * as signalR from '@aspnet/signalr';
 import messageRequests from '../../DBRequests/messageRequests';
+import ReactDOM from 'react-dom';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -61,6 +62,14 @@ class MessageBoard extends Component {
     });
   };
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   componentWillUnmount() {
     // user leaves the room
     this.state.hubConnection
@@ -110,6 +119,9 @@ class MessageBoard extends Component {
           {this.state.messages.map((message, index) => (
             <span style={{display: 'block'}} key={index}> {message} </span>
           ))}
+          <div style={{ float:"left", clear: "both" }}
+            ref={(el) => { this.messagesEnd = el; }}>
+          </div>
         </div>
 
         <div className="input-group">
