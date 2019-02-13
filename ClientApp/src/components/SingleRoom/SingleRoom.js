@@ -64,7 +64,7 @@ export class SingleRoom extends Component {
     return (
       <div>
         <button
-          className="btn btn-default"
+          className="btn btn-default back-btn"
           onClick={this.goBack}
         >
           <Glyphicon glyph="chevron-left" />
@@ -78,7 +78,7 @@ export class SingleRoom extends Component {
         <div className="top">
           <div className="tunes">
             <h2>Tunes</h2>
-            <iframe src={this.state.room.tuneLink} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src={this.state.room.tuneLink} width="300" height="200" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>

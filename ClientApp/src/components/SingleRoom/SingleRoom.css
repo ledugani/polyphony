@@ -1,5 +1,5 @@
 .top {
-  height: 40%;
+  height: 300px;
   padding-bottom: 25px;
   margin-bottom: 25px;
 }
@@ -17,4 +17,8 @@
 
 .bottom {
   height: 50%;
+}
+
+.back-btn {
+  float: right;
 }

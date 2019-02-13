@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import roomsRequest from '../../DBRequests/roomsRequest';
 import { Link } from 'react-router-dom';
+import './Rooms.css';
 
 export class Rooms extends Component {
     state = {
@@ -44,9 +45,6 @@ export class Rooms extends Component {
               <br />
               {room.roomDescription}
             </div>
-            <div>
-
-            </div>
           </div>
         );
       })
@@ -54,7 +52,7 @@ export class Rooms extends Component {
       <div>
         <h1>All Rooms</h1>
         <button
-          className="btn btn-default"
+          className="btn btn-default new-btn"
         >
           <Link to="/newroom">New Room</Link>
         </button>
