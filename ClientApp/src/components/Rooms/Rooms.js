@@ -32,10 +32,7 @@ export class Rooms extends Component {
               &nbsp;
               |
               &nbsp;
-              Creator: {room.creator}
-              &nbsp;
-              |
-              &nbsp;
+              Creator: <em>{room.creator}</em>
               <button
                 className="btn btn-default view"
                 onClick={() => {this.pushToRoom(room.roomId)}}
@@ -49,14 +46,14 @@ export class Rooms extends Component {
         );
       })
     return (
-      <div>
+      <div className="container">
         <h1>All Rooms</h1>
         <button
           className="btn btn-default new-btn"
         >
           <Link to="/newroom">New Room</Link>
         </button>
-        <ul>
+        <ul className="list">
           {allRooms}
         </ul>
       </div>

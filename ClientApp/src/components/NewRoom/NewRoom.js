@@ -1,6 +1,7 @@
 import React from 'react';
-import roomsRequest from '../DBRequests/roomsRequest';
+import roomsRequest from '../../DBRequests/roomsRequest';
 import { Glyphicon } from 'react-bootstrap';
+import './NewRoom.css';
 
 class NewRoom extends React.Component {
   state = {

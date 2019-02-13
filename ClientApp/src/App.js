@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
+import { Home } from './components/Home/Home';
 import { Rooms } from './components/Rooms/Rooms';
-import { Registration } from './components/Registration';
-import { Login } from './components/Login';
+import { Registration } from './components/Registration/Registration';
+import { Login } from './components/Login/Login';
 import firebase from 'firebase';
 
 import fbConnection from './FirebaseRequests/connection';
 import { SingleRoom } from './components/SingleRoom/SingleRoom';
-import NewRoom from './components/NewRoom';
+import NewRoom from './components/NewRoom/NewRoom';
 
 fbConnection();
 

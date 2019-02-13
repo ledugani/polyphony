@@ -1,8 +1,8 @@
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import authRequests from '../FirebaseRequests/auth';
-import userRequests from '../DBRequests/userRequests';
+import authRequests from '../../FirebaseRequests/auth';
+import userRequests from '../../DBRequests/userRequests';
+import './Login.css';
 
 export class Login extends Component {
   state = {

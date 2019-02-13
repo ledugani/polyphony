@@ -10,8 +10,13 @@ export class NavMenu extends Component {
 
   render() {
     const logoutClickEvent = () => {
-      authRequests.logoutUser();
-      this.props.logout;
+      authRequests.logoutUser()
+      .then(() => {
+        this.props.logout();
+      })
+      .catch((err) => {
+        console.error("There was a problem logging you out -> ", err);
+      });
     };
 
     return (
