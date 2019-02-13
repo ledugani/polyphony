@@ -62,7 +62,7 @@ export class SingleRoom extends Component {
     });
 
     return (
-      <div>
+      <div className="container">
         <button
           className="btn btn-default back-btn"
           onClick={this.goBack}
@@ -78,7 +78,7 @@ export class SingleRoom extends Component {
         <div className="top">
           <div className="tunes">
             <h2>Tunes</h2>
-            <iframe src={this.state.room.tuneLink} width="300" height="200" frameBorder="0" allowtransparency="true" allow="encrypted-media" title={this.state.room.roomName}></iframe>
+            <iframe src={this.state.room.tuneLink} frameBorder="0" allowtransparency="true" allow="encrypted-media" title={this.state.room.roomName}></iframe>
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>

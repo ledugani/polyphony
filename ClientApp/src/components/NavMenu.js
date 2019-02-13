@@ -23,7 +23,7 @@ export class NavMenu extends Component {
       <Navbar fixedTop fluid className="navbar-nav">
         <Navbar.Header>
           <Navbar.Brand>
-            <img src={logo} />
+            <img src={logo} alt="polyphony logo"/>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

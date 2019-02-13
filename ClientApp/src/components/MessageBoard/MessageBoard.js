@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './MessageBoard.css'
 import * as signalR from '@aspnet/signalr';
 import messageRequests from '../../DBRequests/messageRequests';
-import ReactDOM from 'react-dom';
 
 class MessageBoard extends Component {
   constructor(props) {
@@ -109,30 +108,32 @@ class MessageBoard extends Component {
       </span>)
     })
     return (
-      <div>
+      <div className="message-container">
         <br />
-
-        <div className="banana">
-          <div>
-            {history}
+        <div className="abc">
+          <div className="banana">
+            <div className="xyz">
+              {history}
+            </div>
+            {this.state.messages.map((message, index) => (
+              <span style={{display: 'block'}} key={index}> {message} </span>
+            ))}
+            <div style={{ float:"left", clear: "both" }}
+              ref={(el) => { this.messagesEnd = el; }}>
+            </div>
           </div>
-          {this.state.messages.map((message, index) => (
-            <span style={{display: 'block'}} key={index}> {message} </span>
-          ))}
-          <div style={{ float:"left", clear: "both" }}
-            ref={(el) => { this.messagesEnd = el; }}>
+
+          <div className="input-group">
+            <input type="text"
+              className="form-control"
+              value={this.state.message}
+              onChange={e => this.setState({ message: e.target.value })}
+              aria-describedby="basic-addon2"
+            />
+            <span className="input-group-addon" id="basic-addon2" onClick={this.sendMessage}>Send</span>
           </div>
         </div>
 
-        <div className="input-group">
-          <input type="text"
-            className="form-control"
-            value={this.state.message}
-            onChange={e => this.setState({ message: e.target.value })}
-            aria-describedby="basic-addon2"
-          />
-          <span className="input-group-addon" id="basic-addon2" onClick={this.sendMessage}>Send</span>
-        </div>
       </div>
     );
   }
