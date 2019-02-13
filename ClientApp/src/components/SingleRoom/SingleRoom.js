@@ -5,18 +5,14 @@ import messageRequests from '../../DBRequests/messageRequests';
 import { Glyphicon } from 'react-bootstrap';
 import './SingleRoom.css';
 
-// import firebase from 'firebase';
-
 export class SingleRoom extends Component {
   state = {
     room: {
-      artistId: '',
-      currentTime: '',
-      endTime: '',
+      creator: '',
       roomDescription: '',
       roomId: '',
       roomName: '',
-      startTime: '',
+      tuneLink: '',
     },
     users: [],
     messages: [],
@@ -80,8 +76,9 @@ export class SingleRoom extends Component {
           <p>{room.roomDescription}</p>
         </div>
         <div className="top">
-          <div className="soundcloud">
-            <h2>SoundCloud</h2>
+          <div className="tunes">
+            <h2>Tunes</h2>
+            <iframe src={this.state.room.tuneLink} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
           <div className="activeusers">
             <h2>Active Users</h2>
@@ -92,7 +89,9 @@ export class SingleRoom extends Component {
         </div>
         <div className="bottom">
           <h2>Message Board</h2>
-          {messageBoard}
+          <div>
+            {messageBoard}
+          </div>
         </div>
       </div>
     );

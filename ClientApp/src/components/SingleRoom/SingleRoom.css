@@ -1,12 +1,20 @@
-.soundcloud {
+.top {
+  height: 40%;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.tunes {
   width: 50%;
-  height: 200px;
   float: left;
 }
 
 .activeusers {
   width: 50%;
   float: right;
-  height: 200px;
   overflow-y: auto;
+}
+
+.bottom {
+  height: 50%;
 }

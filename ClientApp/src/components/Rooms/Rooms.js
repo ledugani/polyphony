@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import roomsRequest from '../DBRequests/roomsRequest';
+import roomsRequest from '../../DBRequests/roomsRequest';
+import { Link } from 'react-router-dom';
 
 export class Rooms extends Component {
     state = {
@@ -26,17 +27,16 @@ export class Rooms extends Component {
         return (
           <div key={room.roomId} className="panel panel-default">
             <div className="panel-body">
-              {room.artistId}
+              <strong>{room.roomName}</strong>
               &nbsp;
               |
               &nbsp;
-              {room.roomName}
+              Creator: {room.creator}
               &nbsp;
               |
               &nbsp;
-              {room.startTime}
               <button
-                className="btn btn-default"
+                className="btn btn-default view"
                 onClick={() => {this.pushToRoom(room.roomId)}}
                 >
                   View
@@ -53,6 +53,11 @@ export class Rooms extends Component {
     return (
       <div>
         <h1>All Rooms</h1>
+        <button
+          className="btn btn-default"
+        >
+          <Link to="/newroom">New Room</Link>
+        </button>
         <ul>
           {allRooms}
         </ul>

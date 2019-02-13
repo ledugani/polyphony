@@ -8,7 +8,6 @@ class MessageBoard extends Component {
     super(props);
 
     this.state = {
-      //activeUsers: [],
       currentUser: {},
       messageHistory: [],
       message: '',

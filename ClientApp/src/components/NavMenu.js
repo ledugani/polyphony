@@ -29,11 +29,14 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='home' /> Home
               </NavItem>
             </LinkContainer>
+            { this.props.authed ?
             <LinkContainer to={'/rooms'}>
               <NavItem>
                 <Glyphicon glyph='cd' /> Rooms
               </NavItem>
-            </LinkContainer>
+            </LinkContainer> :
+            null
+            }
             { this.props.authed ? (
             <LinkContainer to={'/registration'}>
               <NavItem>
@@ -44,7 +47,8 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='road' /> Logout
               </button>
               </NavItem>
-            </LinkContainer>) : (
+            </LinkContainer>
+            ) : (
             <LinkContainer to={'/login'}>
               <NavItem>
                 <Glyphicon glyph='th-list' /> Login

@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { Rooms } from './components/Rooms';
+import { Rooms } from './components/Rooms/Rooms';
 import { Registration } from './components/Registration';
 import { Login } from './components/Login';
 import firebase from 'firebase';
 
 import fbConnection from './FirebaseRequests/connection';
 import { SingleRoom } from './components/SingleRoom/SingleRoom';
+import NewRoom from './components/NewRoom';
 
 fbConnection();
 
@@ -78,9 +79,12 @@ export default class App extends Component {
         <Layout authed={this.state.authed} runAway={this.runAway}>
           <Switch>
             <Route exact path='/' component={Home} />
-            <PrivateRoute path='/rooms' authed={this.state.authed} component={Rooms} />
+            {this.state.authed ?
+              <PrivateRoute path='/rooms' authed={this.state.authed} component={Rooms} /> :
+              <PublicRoute path='/registration' authed={this.state.authed} component={Registration} />
+            }
+            <PrivateRoute path='/newroom' authed={this.state.authed} component={NewRoom}/>
             <PrivateRoute path='/singleRoom/:id' authed={this.state.authed} component={SingleRoom}/>
-            <PublicRoute path='/registration' authed={this.state.authed} component={Registration} />
             <PublicRoute path='/login' authed={this.state.authed} component={Login} />
           </Switch>
         </Layout>
