@@ -10,6 +10,16 @@
     color: white;
 }
 
+.stick-right {
+    float: right;
+}
+
+ul {
+    overflow: hidden;
+}
+
+
+/*
 @media (min-width: 768px) {
     .navbar {
         height: 100%;
@@ -52,4 +62,4 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-}
+} */

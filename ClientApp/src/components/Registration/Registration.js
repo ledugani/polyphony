@@ -78,8 +78,8 @@ export class Registration extends Component {
         return (
             <div className="Register">
                 <div id="login-form">
+                <h1 className="text-center">Create Your Account</h1>
                     <form className="form-horizontal col-sm-6 col-sm-offset-3">
-                        <h1 className="text-center">Register</h1>
                         <div className="form-group">
                             <label htmlFor="inputEmail" className="col-sm-4 control-label">
                                 First Name:
@@ -172,6 +172,10 @@ export class Registration extends Component {
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <div className="footer">
+                    <p>Terms of Use &nbsp; Privacy Policy &nbsp; &copy; Tom Dugan Enterprises</p>
                 </div>
             </div>
         )

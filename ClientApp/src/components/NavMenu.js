@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import authRequests from '../FirebaseRequests/auth';
+import logo from '../components/Logo/polyphony_logo(black).png'
 import './NavMenu.css';
 
 export class NavMenu extends Component {
@@ -20,10 +20,10 @@ export class NavMenu extends Component {
     };
 
     return (
-      <Navbar inverse fixedTop fluid collapseOnSelect>
+      <Navbar fixedTop fluid className="navbar-nav">
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>Polyphony</Link>
+            <img src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -44,17 +44,12 @@ export class NavMenu extends Component {
             }
             { this.props.authed ? (
             <LinkContainer to={'/registration'}>
-              <NavItem>
-              <button
-                onClick={logoutClickEvent}
-                className='btn btn-default'
-                >
-                <Glyphicon glyph='road' /> Logout
-              </button>
+              <NavItem onClick={logoutClickEvent}>
+                  <Glyphicon glyph='road' /> Logout
               </NavItem>
             </LinkContainer>
             ) : (
-            <LinkContainer to={'/login'}>
+            <LinkContainer to={'/login'} className="stick-right">
               <NavItem>
                 <Glyphicon glyph='th-list' /> Login
               </NavItem>

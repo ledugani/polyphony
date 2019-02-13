@@ -11,7 +11,7 @@
   margin-right: 40px;
 }
 
-ul, menu, dir {
+.panel {
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;
