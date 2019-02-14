@@ -67,28 +67,28 @@ export class SingleRoom extends Component {
           className="btn btn-default back-btn"
           onClick={this.goBack}
         >
-          <Glyphicon glyph="chevron-left" />
+          <Glyphicon glyph="chevron-left " />
           &nbsp;
           Back
         </button>
         <div>
-          <h1>{room.roomName}</h1>
-          <p>{room.roomDescription}</p>
+          <h1 className="heeaad">{room.roomName}</h1>
+          <p className="heeaad">{room.roomDescription}</p>
         </div>
         <div className="top">
           <div className="tunes">
-            <h2>Tunes</h2>
+            <h2 className="text-center">Tunes</h2>
             <iframe src={this.state.room.tuneLink} frameBorder="0" allowtransparency="true" allow="encrypted-media" title={this.state.room.roomName}></iframe>
           </div>
           <div className="activeusers">
-            <h2>Active Users</h2>
+            <h2 className="text-center">Active Users</h2>
             <ul id="active">
               {currentUsers}
             </ul>
           </div>
         </div>
         <div className="bottom">
-          <h2>Message Board</h2>
+          <h2 className="text-center">Message Board</h2>
           <div>
             {messageBoard}
           </div>

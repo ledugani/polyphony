@@ -3,9 +3,17 @@
   padding-top: 25px;
 }
 
+.rooms-heead {
+  color: #F2CEE6;
+}
+
 .help {
   width: 70%;
   margin: auto;
+}
+
+.panel-body {
+  background-color: #C3DBC5;
 }
 
 .view {
@@ -15,6 +23,11 @@
 .list {
   padding: 40px;
   margin: auto;
+}
+
+.new-room-btn {
+  left: 255px;
+  position: absolute;
 }
 
 .panel {
@@ -29,10 +42,9 @@
 }
 
 .footer-rooms {
-  background-color: #C3DBC5;
+  background-color: #7798AB;
   font: 20px;
   color: white;
-  border-top: 1px solid #E7E7E7;
   text-align: center;
   padding: 20px;
   /* position: fixed; */

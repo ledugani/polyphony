@@ -109,10 +109,9 @@ class MessageBoard extends Component {
     })
     return (
       <div className="message-container">
-        <br />
         <div className="abc">
           <div className="banana">
-            <div className="xyz">
+            <div className="xyz ">
               {history}
             </div>
             {this.state.messages.map((message, index) => (
