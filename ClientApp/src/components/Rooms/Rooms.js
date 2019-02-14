@@ -52,12 +52,10 @@ export class Rooms extends Component {
           <button className="btn btn-default new-btn">
             <Link to="/newroom">New Room</Link>
           </button>
+          <ul className="list">
+            {allRooms}
+          </ul>
         </div>
-
-        <ul className="list">
-          {allRooms}
-        </ul>
-
         <div className="footer-rooms">
           <p>Terms of Use &nbsp; Privacy Policy &nbsp; &copy; Tom Dugan Enterprises</p>
         </div>
