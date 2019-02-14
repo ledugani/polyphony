@@ -1,0 +1,55 @@
+.container-rooms {
+  margin: auto;
+  padding-top: 25px;
+}
+
+.rooms-heead {
+  color: #F2CEE6;
+}
+
+.help {
+  width: 70%;
+  margin: auto;
+}
+
+.panel-body {
+  background-color: #C3DBC5;
+}
+
+.view {
+  float: right;
+}
+
+.list {
+  padding: 40px;
+  margin: auto;
+}
+
+.new-room-btn {
+  left: 255px;
+  position: absolute;
+}
+
+.panel {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+  width: 90%;
+}
+
+.footer-rooms {
+  background-color: #7798AB;
+  font: 20px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%
+}

@@ -61,6 +61,14 @@ class MessageBoard extends Component {
     });
   };
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   componentWillUnmount() {
     // user leaves the room
     this.state.hubConnection
@@ -100,27 +108,31 @@ class MessageBoard extends Component {
       </span>)
     })
     return (
-      <div>
-        <br />
-
-        <div className="banana">
-          <div>
-            {history}
+      <div className="message-container">
+        <div className="abc">
+          <div className="banana">
+            <div className="xyz ">
+              {history}
+            </div>
+            {this.state.messages.map((message, index) => (
+              <span style={{display: 'block'}} key={index} className="xyz"> {message} </span>
+            ))}
+            <div style={{ float:"left", clear: "both" }}
+              ref={(el) => { this.messagesEnd = el; }}>
+            </div>
           </div>
-          {this.state.messages.map((message, index) => (
-            <span style={{display: 'block'}} key={index}> {message} </span>
-          ))}
+
+          <div className="input-group">
+            <input type="text"
+              className="form-control"
+              value={this.state.message}
+              onChange={e => this.setState({ message: e.target.value })}
+              aria-describedby="basic-addon2"
+            />
+            <span className="input-group-addon" id="basic-addon2" onClick={this.sendMessage}>Send</span>
+          </div>
         </div>
 
-        <div className="input-group">
-          <input type="text"
-            className="form-control"
-            value={this.state.message}
-            onChange={e => this.setState({ message: e.target.value })}
-            aria-describedby="basic-addon2"
-          />
-          <span className="input-group-addon" id="basic-addon2" onClick={this.sendMessage}>Send</span>
-        </div>
       </div>
     );
   }

@@ -1,7 +1,13 @@
+.message-container {
+  width: 100%;
+  margin: auto;
+  padding-top: 0;
+}
+
 .banana {
-  background-color: plum;
   height: 200px;
   overflow-y: auto;
+  background-color: #C3DBC5;
 }
 .inputbox {
   width: 75%;
@@ -9,4 +15,14 @@
 
 .send {
   width: 25%;
+}
+
+.xyz {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.abc {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }

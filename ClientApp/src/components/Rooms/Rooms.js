@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import roomsRequest from '../../DBRequests/roomsRequest';
 import { Link } from 'react-router-dom';
+import './Rooms.css';
 
 export class Rooms extends Component {
     state = {
@@ -31,10 +32,7 @@ export class Rooms extends Component {
               &nbsp;
               |
               &nbsp;
-              Creator: {room.creator}
-              &nbsp;
-              |
-              &nbsp;
+              Creator: <em>{room.creator}</em>
               <button
                 className="btn btn-default view"
                 onClick={() => {this.pushToRoom(room.roomId)}}
@@ -44,23 +42,23 @@ export class Rooms extends Component {
               <br />
               {room.roomDescription}
             </div>
-            <div>
-
-            </div>
           </div>
         );
       })
     return (
-      <div>
-        <h1>All Rooms</h1>
-        <button
-          className="btn btn-default"
-        >
-          <Link to="/newroom">New Room</Link>
-        </button>
-        <ul>
-          {allRooms}
-        </ul>
+      <div className="container-rooms">
+        <div className="help">
+          <h1 className="text-center heeaad">All Rooms</h1>
+          <button className="btn btn-default new-room-btn">
+            <Link to="/newroom">New Room</Link>
+          </button>
+          <ul className="list">
+            {allRooms}
+          </ul>
+        </div>
+        <div className="footer-rooms">
+          <p>Terms of Use &nbsp; Privacy Policy &nbsp; &copy; Tom Dugan Enterprises</p>
+        </div>
       </div>
     );
   }

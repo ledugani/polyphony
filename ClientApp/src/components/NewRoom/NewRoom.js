@@ -1,6 +1,7 @@
 import React from 'react';
-import roomsRequest from '../DBRequests/roomsRequest';
+import roomsRequest from '../../DBRequests/roomsRequest';
 import { Glyphicon } from 'react-bootstrap';
+import './NewRoom.css';
 
 class NewRoom extends React.Component {
   state = {
@@ -70,7 +71,7 @@ class NewRoom extends React.Component {
 
     return (
       <div className="NewRoom">
-        <h1>New Room</h1>
+        <h1 className="text-center">Create a New Room</h1>
         <button
           className="btn btn-default"
           onClick={this.goBack}
@@ -79,7 +80,7 @@ class NewRoom extends React.Component {
           &nbsp;
           Back
         </button>
-        <div className="col-xs-8 panel panel-info col-xs-offset-2">
+        <div className="myForm">
           <form className="panel-body" onSubmit={this.formSubmitEvent}>
             <div className="form-group">
               <label htmlFor="roomName">Room Name:</label>

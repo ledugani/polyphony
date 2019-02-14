@@ -1,0 +1,10 @@
+.jumbotron {
+  background-color: #C3DBC5;
+  width: 90%;
+  margin: auto;
+}
+
+.smaller-text {
+  line-height: 1;
+  font-size: 10px;
+}
