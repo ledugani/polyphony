@@ -18,46 +18,33 @@ export class NavMenu extends Component {
         console.error("There was a problem logging you out -> ", err);
       });
     };
-
-    return (
-      <Navbar fixedTop fluid className="navbar-nav">
-        <Navbar.Header>
-          <Navbar.Brand>
-            <img src={logo} alt="polyphony logo"/>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <LinkContainer to={'/'} exact>
-              <NavItem>
-                <Glyphicon glyph='home' /> Home
-              </NavItem>
-            </LinkContainer>
-            { this.props.authed ?
-            <LinkContainer to={'/rooms'}>
-              <NavItem>
-                <Glyphicon glyph='cd' /> Rooms
-              </NavItem>
-            </LinkContainer> :
-            null
-            }
-            { this.props.authed ? (
-            <LinkContainer to={'/registration'}>
-              <NavItem onClick={logoutClickEvent}>
-                  <Glyphicon glyph='road' /> Logout
-              </NavItem>
-            </LinkContainer>
-            ) : (
-            <LinkContainer to={'/login'} className="stick-right">
-              <NavItem>
-                <Glyphicon glyph='th-list' /> Login
-              </NavItem>
-            </LinkContainer>
-            ) }
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
+    if (this.props.authed) {
+      return (
+        <Navbar fixedTop fluid className="navbar-nav">
+          <Navbar.Header>
+            <Navbar.Brand>
+              <img src={logo} alt="polyphony logo"/>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav>
+              <LinkContainer to={'/rooms'}>
+                <NavItem>
+                  <Glyphicon glyph='cd' /> Rooms
+                </NavItem>
+              </LinkContainer>
+              <LinkContainer to={'/registration'}>
+                <NavItem onClick={logoutClickEvent}>
+                    <Glyphicon glyph='road' /> Logout
+                </NavItem>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      );
+    } else {
+      return null;
+    }
   }
 }

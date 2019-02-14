@@ -48,8 +48,8 @@ export class Rooms extends Component {
     return (
       <div className="container-rooms">
         <div className="help">
-          <h1 className="rooms-heading">All Rooms</h1>
-          <button className="btn btn-default new-btn">
+          <h1 className="text-center">All Rooms</h1>
+          <button className="btn btn-default">
             <Link to="/newroom">New Room</Link>
           </button>
           <ul className="list">
