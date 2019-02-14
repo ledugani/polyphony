@@ -97,6 +97,10 @@ export class Login extends Component {
             </div>
           </form>
         </div>
+
+        <div className="footer">
+          <p>Terms of Use &nbsp; Privacy Policy &nbsp; &copy; Tom Dugan Enterprises</p>
+        </div>
       </div>
     );
   }

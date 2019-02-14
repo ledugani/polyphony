@@ -46,16 +46,21 @@ export class Rooms extends Component {
         );
       })
     return (
-      <div className="container">
-        <h1>All Rooms</h1>
-        <button
-          className="btn btn-default new-btn"
-        >
-          <Link to="/newroom">New Room</Link>
-        </button>
+      <div className="container-rooms">
+        <div className="help">
+          <h1 className="rooms-heading">All Rooms</h1>
+          <button className="btn btn-default new-btn">
+            <Link to="/newroom">New Room</Link>
+          </button>
+        </div>
+
         <ul className="list">
           {allRooms}
         </ul>
+
+        <div className="footer-rooms">
+          <p>Terms of Use &nbsp; Privacy Policy &nbsp; &copy; Tom Dugan Enterprises</p>
+        </div>
       </div>
     );
   }

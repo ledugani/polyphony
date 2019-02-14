@@ -1,7 +1,13 @@
+/* Global CSS Settings */
+
 .row, body {
     display: block;
     background-color: #F7F5F0;
     padding-top: 25px;
+}
+
+.panel {
+    width: 100% !important;
 }
 
 @media (max-width: 767px) {

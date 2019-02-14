@@ -116,7 +116,7 @@ class MessageBoard extends Component {
               {history}
             </div>
             {this.state.messages.map((message, index) => (
-              <span style={{display: 'block'}} key={index}> {message} </span>
+              <span style={{display: 'block'}} key={index} className="xyz"> {message} </span>
             ))}
             <div style={{ float:"left", clear: "both" }}
               ref={(el) => { this.messagesEnd = el; }}>

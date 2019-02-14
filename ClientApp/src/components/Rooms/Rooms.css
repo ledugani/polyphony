@@ -1,3 +1,12 @@
+.container-rooms {
+  margin: auto;
+  padding-top: 25px;
+}
+
+.rooms-heading {
+  float: left;
+}
+
 .new-btn {
   float: right;
 }
@@ -7,8 +16,8 @@
 }
 
 .list {
-  padding-right: 40px;
-  margin-right: 40px;
+  padding: 40px;
+  margin: auto;
 }
 
 .panel {
@@ -20,4 +29,18 @@
   margin-inline-end: 0px;
   padding-inline-start: 0px;
   width: 90%;
+}
+
+.footer-rooms {
+  background-color: #C3DBC5;
+  font: 20px;
+  color: white;
+  border-top: 1px solid #E7E7E7;
+  text-align: center;
+  padding: 20px;
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%
 }

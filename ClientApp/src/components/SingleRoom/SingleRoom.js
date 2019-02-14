@@ -62,7 +62,7 @@ export class SingleRoom extends Component {
     });
 
     return (
-      <div className="container">
+      <div className="container-single">
         <button
           className="btn btn-default back-btn"
           onClick={this.goBack}
